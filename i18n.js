@@ -17,7 +17,7 @@ const I18N = {
       "path.kicker": "Parcours professionnel", "path.title": "Expériences",
       "work.kicker": "Projets", "work.title": "Ce que j'ai réalisé",
       "pro.kicker": "En entreprise", "pro.title": "Professionnel", "pro.sub": "Stages et missions en entreprise.",
-      "damane.sub": "Filiale de Bank of Africa · stage de 5 mois · mars – juillet 2026",
+      "damane.sub": "Filiale de Bank of Africa · stage de 6 mois · 10 mars – 8 septembre 2026",
       "essanet.sub": "Éditeur de logiciels de gestion · étés 2023 et 2024",
       "marsa.sub": "Direction des Systèmes d'Information · stage de 3 mois · juillet – septembre 2026",
       "web.sub": "Agence web · stage de 2 mois · juillet – août 2025",
@@ -62,7 +62,7 @@ const I18N = {
       "path.kicker": "Professional path", "path.title": "Experience",
       "work.kicker": "Projects", "work.title": "What I have built",
       "pro.kicker": "In companies", "pro.title": "Professional", "pro.sub": "Internships and company work.",
-      "damane.sub": "Bank of Africa subsidiary · 5-month internship · March – July 2026",
+      "damane.sub": "Bank of Africa subsidiary · 6-month internship · 10 March – 8 September 2026",
       "essanet.sub": "Business-software publisher · summers 2023 and 2024",
       "marsa.sub": "Information Systems department · 3-month internship · July – September 2026",
       "web.sub": "Web agency · 2-month internship · July – August 2025",
@@ -86,7 +86,7 @@ const I18N = {
       "link.Code source": "Source code", "link.Voir l'application": "Open the app", "link.Voir le site": "Open the site"
     },
     experiences: {
-      "BMCE Damane Cash": { sub: "Bank of Africa subsidiary", role: "Data engineering & business applications intern", date: "March – July 2026", length: "5 months", place: "Casablanca", points: ["Pentaho ETL flows to integrate heterogeneous banking files.", "Internal applications: RIB management, SIMT/MAD generator, commission statements, PDF invoices, data extraction.", "Selenium robots that fetch partner-platform reports every day.", "ERP Launchpad portal so every application is reached from one place."] },
+      "BMCE Damane Cash": { sub: "Bank of Africa subsidiary", role: "Data engineering & business applications intern", date: "10 March – 8 September 2026", length: "6 months", place: "Casablanca", points: ["Pentaho ETL flows to integrate heterogeneous banking files.", "Internal applications: RIB management, SIMT/MAD generator, commission statements, PDF invoices, data extraction.", "Selenium robots that fetch partner-platform reports every day.", "ERP Launchpad portal so every application is reached from one place."] },
       "Marsa Maroc": { sub: "Information Systems department", role: "Data & AI intern", date: "July – September 2026", length: "3 months", place: "Casablanca", points: ["Marsa Insight AI: a natural-language question becomes a controlled SQL query, a chart and an interpretation.", "Read-only access, role control, and validation of every query before it runs.", "CSV/Excel import, comparison of periods and sites, exportable report.", "SAP training completed at Marsa Maroc."] },
       "Web Success": { sub: "Web agency", role: "Full-stack developer intern", date: "July – August 2025", length: "2 months", place: "Casablanca", points: ["Devis-AI: LLM-assisted quotes, secured REST API, PDF export."] },
       "Essanet Maroc": { sub: "Business-software publisher", role: "Pack Sohoula lead, then development", date: "Summers 2023 and 2024", place: "Casablanca", points: ["Technical management of the Pack Sohoula website (WordPress).", "Later: GSMAG software in C# .NET and multilingual showcase sites."] }
@@ -119,7 +119,7 @@ const I18N = {
       "path.kicker": "المسار المهني", "path.title": "التجربة",
       "work.kicker": "المشاريع", "work.title": "ما أنجزته",
       "pro.kicker": "في الشركات", "pro.title": "مهني", "pro.sub": "تدريبات ومهام داخل الشركات.",
-      "damane.sub": "فرع بنك أفريقيا · تدريب 5 أشهر · مارس – يوليوز 2026",
+      "damane.sub": "فرع بنك أفريقيا · تدريب 6 أشهر · 10 مارس – 8 شتنبر 2026",
       "essanet.sub": "ناشر برمجيات التدبير · صيفا 2023 و2024",
       "marsa.sub": "مديرية نظم المعلومات · تدريب 3 أشهر · يوليوز – شتنبر 2026",
       "web.sub": "وكالة ويب · تدريب شهرين · يوليوز – غشت 2025",
@@ -143,7 +143,7 @@ const I18N = {
       "link.Code source": "الشيفرة المصدرية", "link.Voir l'application": "فتح التطبيق", "link.Voir le site": "فتح الموقع"
     },
     experiences: {
-      "BMCE Damane Cash": { sub: "فرع بنك أفريقيا", role: "متدربة هندسة بيانات وتطبيقات مهنية", date: "مارس – يوليوز 2026", length: "5 أشهر", place: "الدار البيضاء", points: ["تدفقات ETL بـ Pentaho لدمج ملفات بنكية غير متجانسة.", "تطبيقات داخلية: تدبير RIB، مولّد SIMT/MAD، كشوف العمولات، فواتير PDF، استخراج البيانات.", "روبوتات Selenium تجلب يومياً تقارير منصات الشركاء.", "بوابة ERP Launchpad لجمع كل التطبيقات في نقطة دخول واحدة."] },
+      "BMCE Damane Cash": { sub: "فرع بنك أفريقيا", role: "متدربة هندسة بيانات وتطبيقات مهنية", date: "10 مارس – 8 شتنبر 2026", length: "6 أشهر", place: "الدار البيضاء", points: ["تدفقات ETL بـ Pentaho لدمج ملفات بنكية غير متجانسة.", "تطبيقات داخلية: تدبير RIB، مولّد SIMT/MAD، كشوف العمولات، فواتير PDF، استخراج البيانات.", "روبوتات Selenium تجلب يومياً تقارير منصات الشركاء.", "بوابة ERP Launchpad لجمع كل التطبيقات في نقطة دخول واحدة."] },
       "Marsa Maroc": { sub: "مديرية نظم المعلومات", role: "متدربة بيانات وذكاء اصطناعي", date: "يوليوز – شتنبر 2026", length: "3 أشهر", place: "الدار البيضاء", points: ["Marsa Insight AI: سؤال باللغة الطبيعية يصبح استعلام SQL مضبوطاً ورسماً بيانياً وتفسيراً.", "وصول للقراءة فقط، تحكم حسب الدور، والتحقق من كل استعلام قبل تنفيذه.", "استيراد CSV/Excel، مقارنة الفترات والمواقع، وتقرير قابل للتصدير.", "تكوين SAP تابعته لدى مرسى المغرب."] },
       "Web Success": { sub: "وكالة ويب", role: "متدربة تطوير شامل", date: "يوليوز – غشت 2025", length: "شهران", place: "الدار البيضاء", points: ["تطبيق Devis-AI: إنشاء عروض أسعار بنموذج لغوي، واجهة REST مؤمّنة، وتصدير PDF."] },
       "Essanet Maroc": { sub: "ناشر برمجيات التدبير", role: "مسؤولة Pack Sohoula ثم التطوير", date: "صيفا 2023 و2024", place: "الدار البيضاء", points: ["تدبير ومتابعة تقنية لموقع Pack Sohoula (WordPress).", "بعد ذلك: برنامج GSMAG بـ C# .NET ومواقع عرض متعددة اللغات."] }

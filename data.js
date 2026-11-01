@@ -582,7 +582,7 @@ const EXPERIENCES = [
   {
     org: "BMCE Damane Cash", sub: "Filiale de Bank of Africa",
     role: "Stagiaire en ingénierie des données et applications métier",
-    date: "Mars – Juillet 2026", length: "5 mois", place: "Casablanca",
+    date: "10 mars – 8 septembre 2026", length: "6 mois", place: "Casablanca",
     points: [
       "Flux ETL Pentaho pour intégrer des fichiers bancaires hétérogènes.",
       "Applications internes : gestion des RIB, générateur SIMT/MAD, relevés de commissions, factures PDF, extraction de données.",
