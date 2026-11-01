@@ -121,13 +121,17 @@ function paint(id, items) {
     bar.dataset.for = id;
     grid.after(bar);
   }
-  if (total <= STEP || n >= total) {
+  if (total <= STEP) {
     bar.hidden = true;
     bar.innerHTML = "";
     return;
   }
-  bar.hidden = false;
-  bar.innerHTML = `<button type="button" class="btn btn-primary" data-more="${id}">${esc(t("more.plus"))}</button><button type="button" class="btn btn-ghost" data-all="${id}">${esc(t("more.all"))}</button>`;
+  const parts = [];
+  if (n < total) parts.push(`<button type="button" class="btn btn-primary" data-more="${id}">${esc(t("more.plus"))}</button>`);
+  if (n > STEP) parts.push(`<button type="button" class="btn btn-ghost" data-less="${id}">${esc(t("more.less"))}</button>`);
+  if (n < total) parts.push(`<button type="button" class="btn btn-ghost" data-all="${id}">${esc(t("more.all"))}</button>`);
+  bar.hidden = parts.length === 0;
+  bar.innerHTML = parts.join("");
 }
 
 function renderGrids() {
@@ -235,6 +239,13 @@ document.addEventListener("click", e => {
   const more = e.target.closest("[data-more]");
   if (more) {
     visible[more.dataset.more] = (visible[more.dataset.more] || STEP) + STEP;
+    renderGrids();
+    return;
+  }
+  const less = e.target.closest("[data-less]");
+  if (less) {
+    const id = less.dataset.less;
+    visible[id] = Math.max(STEP, (visible[id] || STEP) - STEP);
     renderGrids();
     return;
   }
