@@ -582,7 +582,7 @@ const EXPERIENCES = [
   {
     org: "Damane Cash", sub: "Filiale de Bank of Africa · Groupe BMCE",
     role: "Stagiaire en ingénierie des données et applications métier",
-    date: "Mars – Août 2026", length: "6 mois", place: "Casablanca",
+    date: "Mars – Juillet 2026", length: "5 mois", place: "Casablanca",
     points: [
       "Flux ETL Pentaho pour intégrer des fichiers bancaires hétérogènes.",
       "Applications internes : gestion des RIB, générateur SIMT/MAD, relevés de commissions, factures PDF, extraction de données.",
@@ -595,7 +595,7 @@ const EXPERIENCES = [
   {
     org: "Marsa Maroc", sub: "Direction des Systèmes d'Information",
     role: "Stagiaire Data & IA (PFA)",
-    date: "Été 2026", length: "1 mois et demi", place: "Casablanca",
+    date: "Juillet – Septembre 2026", length: "3 mois", place: "Casablanca",
     points: [
       "Assistant décisionnel Marsa Insight AI : une question en langage naturel devient une requête SQL contrôlée, un graphique et une interprétation.",
       "Accès en lecture seule, contrôle par rôle, validation de chaque requête avant exécution.",
