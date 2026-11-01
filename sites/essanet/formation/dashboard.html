@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon parcours — ESSANET Academy</title>
+  <script>!function(){try{var t=localStorage.getItem("gsmag-academy-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}}()</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="academy.css" />
+</head>
+<body class="lms-shell">
+  <aside class="lms-sidebar" id="lmsSidebar">
+    <a class="lms-brand" href="dashboard.html">
+      <img src="../assets/logo-g.png" alt="GSMAG" />
+      <span>ESSANET Academy</span>
+    </a>
+    <nav class="lms-nav">
+      <a class="lms-nav-link is-active" href="#accueil" data-view="accueil"><span class="lms-nav-ico" aria-hidden="true">⌂</span> <span data-ac-i18n="navHome">Accueil</span></a>
+      <a class="lms-nav-link" href="#parcours" data-view="parcours"><span class="lms-nav-ico" aria-hidden="true">◎</span> <span data-ac-i18n="navPath">Mon parcours</span></a>
+      <a class="lms-nav-link" href="#cours" data-view="cours"><span class="lms-nav-ico" aria-hidden="true">▣</span> <span data-ac-i18n="navCourses">Mes cours</span></a>
+      <a class="lms-nav-link is-soon" href="#" data-ac-i18n-title="soon" title="Bientôt"><span class="lms-nav-ico" aria-hidden="true">◷</span> <span data-ac-i18n="navCalendar">Calendrier</span></a>
+      <a class="lms-nav-link" href="#certificats" data-view="certificats"><span class="lms-nav-ico" aria-hidden="true">★</span> <span data-ac-i18n="navCerts">Certificats</span></a>
+      <a class="lms-nav-link lms-nav-admin" href="#utilisateurs" data-view="utilisateurs" id="navUsers" style="display:none;"><span class="lms-nav-ico" aria-hidden="true">👤</span> <span data-ac-i18n="navUsers">Utilisateurs</span></a>
+      <a class="lms-nav-link" href="#chatbox" data-view="chatbox"><span class="lms-nav-ico" aria-hidden="true">💬</span> <span data-ac-i18n="navChat">Chatbox</span></a>
+    </nav>
+    <div class="lms-sidebar-foot">
+      <div class="lms-user-card">
+        <span class="ac-avatar" id="sideAvatar">A</span>
+        <div class="lms-user-meta">
+          <strong id="sideName">…</strong>
+          <span id="sideRole">Apprenant</span>
+        </div>
+      </div>
+      <p class="lms-version">ESSANET Academy · v1.0</p>
+    </div>
+  </aside>
+
+  <div class="lms-main">
+    <header class="lms-topbar">
+      <button type="button" class="ac-icon-btn lms-burger" id="burgerBtn" aria-label="Menu">☰</button>
+      <p class="lms-breadcrumb"><span id="crumbRoot" data-ac-i18n="space">Espace</span> <span>/</span> <strong id="crumbPage">Accueil</strong></p>
+      <label class="lms-search" id="courseSearchWrap">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" id="courseSearch" data-ac-i18n-placeholder="searchModule" placeholder="Rechercher un module…" autocomplete="off" />
+      </label>
+      <div class="lms-topbar-right">
+        <label class="lms-mode-toggle" id="viewModeWrap" style="display:none;">
+          <span data-ac-i18n="adminMode">Admin</span>
+          <input type="checkbox" id="viewModeToggle" />
+          <i></i>
+        </label>
+        <nav class="ac-nav lms-top-actions"></nav>
+        <div class="ac-menu lms-notif-menu" data-notif-menu="1">
+          <button type="button" class="ac-icon-btn" id="notifBtn" aria-label="Notifications" title="Notifications">
+            <span aria-hidden="true">🔔</span>
+            <span class="lms-badge" id="notifBadge" style="display:none;">0</span>
+          </button>
+          <div class="ac-menu-panel lms-notif-panel" id="notifPanel" role="menu">
+            <div class="lms-notif-head">
+              <strong data-ac-i18n="notifications">Notifications</strong>
+              <button type="button" class="btn btn-ghost btn-sm" id="notifMarkAll" data-ac-i18n="markAllRead">Tout lu</button>
+            </div>
+            <ul class="lms-notif-list" id="notifList"></ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="lms-body">
+      <div class="lms-content">
+        <!-- ACCUEIL -->
+        <section class="lms-view is-active" id="view-accueil" data-view-panel="accueil">
+          <div class="lms-home-top">
+            <div>
+              <p class="lms-view-tag" data-ac-i18n="navHome">Accueil</p>
+              <h1 class="lms-home-hello"><span data-ac-i18n="hello">Bonjour,</span> <span id="helloName">…</span></h1>
+              <p class="muted lms-home-sub" id="dashHint" data-ac-i18n="homeHint">Votre formation GSMAG en un clin d’œil.</p>
+            </div>
+            <a class="btn btn-primary btn-sm" href="#" id="btnContinueHero" data-ac-i18n="resume">Reprendre →</a>
+          </div>
+
+          <div class="lms-alert-danger" id="trainerIdleAlert" hidden>
+            <div class="lms-alert-danger-ico" aria-hidden="true">!</div>
+            <div class="lms-alert-danger-body">
+              <strong data-ac-i18n="trainerIdleAlertTitle">Alerte formateurs</strong>
+              <p class="muted" data-ac-i18n="trainerIdleAlertLead">Ces formateurs n’ont pas encore démarré leur formation :</p>
+              <ul id="trainerIdleList"></ul>
+              <button type="button" class="btn btn-outline btn-sm" data-go-view="utilisateurs" data-ac-i18n="trainerIdleSeeUsers">Voir les utilisateurs</button>
+            </div>
+          </div>
+
+          <div class="lms-stat-row" id="homeStats"></div>
+
+          <section class="lms-home-courses">
+            <div class="lms-feed-head">
+              <h2 data-ac-i18n="myCourses">Mes cours</h2>
+              <button type="button" class="btn btn-ghost btn-sm" data-go-view="cours" data-ac-i18n="seeAll">Tout voir</button>
+            </div>
+            <div class="lms-course-stats" id="homeCourseStats"></div>
+            <div class="lms-module-grid lms-home-course-grid" id="homeCourseGrid"></div>
+          </section>
+        </section>
+
+        <!-- MON PARCOURS : chemin ordonné -->
+        <section class="lms-view" id="view-parcours" data-view-panel="parcours" hidden>
+          <ol class="lms-path" id="pathList"></ol>
+        </section>
+
+        <!-- MES COURS : bibliothèque / grille -->
+        <section class="lms-view" id="view-cours" data-view-panel="cours" hidden>
+          <div class="lms-cours-head">
+            <div class="lms-course-stats" id="coursPageStats"></div>
+            <div class="lms-section-tools">
+              <div class="tile-toolbar" id="adminToolbar" style="display:none;">
+                <button type="button" class="btn btn-teal btn-sm" id="btnAddCourse">+ Cours</button>
+                <button type="button" class="btn btn-outline btn-sm" id="btnResetCurriculum">Réinit.</button>
+              </div>
+            </div>
+          </div>
+          <div class="lms-module-grid" id="tileGrid"></div>
+        </section>
+
+        <!-- CERTIFICATS -->
+        <section class="lms-view" id="view-certificats" data-view-panel="certificats" hidden>
+          <p class="lms-view-tag" data-ac-i18n="navCerts">Certificats</p>
+          <header class="lms-view-banner lms-view-banner--certs">
+            <div>
+              <h2 data-ac-i18n="myCerts">Mes certificats</h2>
+              <p data-ac-i18n="myCertsLead">Un certificat nominatif est délivré à chaque module terminé — avec votre prénom et nom.</p>
+            </div>
+          </header>
+          <div class="lms-cert-grid" id="certGrid"></div>
+        </section>
+
+        <!-- UTILISATEURS (admin) -->
+        <section class="lms-view" id="view-utilisateurs" data-view-panel="utilisateurs" hidden>
+          <p class="lms-view-tag">Administration</p>
+          <header class="lms-view-banner lms-view-banner--users">
+            <div>
+              <h2 data-ac-i18n="usersManage">Gestion des utilisateurs</h2>
+              <p data-ac-i18n="usersLead">Ajouter, modifier ou supprimer des comptes, et suivre l’avancement de chaque apprenant.</p>
+            </div>
+            <button type="button" class="btn btn-teal btn-sm" id="btnAddUser" data-ac-i18n="addUser">+ Utilisateur</button>
+          </header>
+          <div class="lms-users-toolbar">
+            <label class="lms-search lms-search--inline">
+              <span aria-hidden="true">⌕</span>
+              <input type="search" id="userSearch" data-ac-i18n-placeholder="searchUser" placeholder="Rechercher nom, e-mail…" autocomplete="off" />
+            </label>
+            <select id="userRoleFilter">
+              <option value="" data-ac-i18n="allRoles">Tous les rôles</option>
+              <option value="client" data-ac-i18n="roleLearner">Apprenant</option>
+              <option value="formateur" data-ac-i18n="roleTrainer">Formateur</option>
+              <option value="admin" data-ac-i18n="roleAdmin">Administrateur</option>
+            </select>
+          </div>
+          <div class="card lms-users-table-wrap">
+            <table class="table lms-users-table" id="usersManageTable">
+              <thead>
+                <tr>
+                  <th data-ac-i18n="userCol">Utilisateur</th>
+                  <th data-ac-i18n="roleCol">Rôle</th>
+                  <th data-ac-i18n="progressCol">Progression</th>
+                  <th data-ac-i18n="certsCol">Certificats</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="usersManageBody"></tbody>
+            </table>
+          </div>
+          <aside class="card lms-user-detail" id="userDetailPanel" hidden>
+            <div class="lms-user-detail-head">
+              <div>
+                <p class="lms-view-tag">Suivi</p>
+                <h3 id="userDetailName">—</h3>
+                <p class="muted" id="userDetailMeta">—</p>
+              </div>
+              <button type="button" class="btn btn-ghost btn-sm" id="btnCloseUserDetail">Fermer</button>
+            </div>
+            <div class="lms-user-detail-stats" id="userDetailStats"></div>
+            <div class="lms-user-courses" id="userDetailCourses"></div>
+          </aside>
+        </section>
+
+        <!-- CHATBOX IA -->
+        <section class="lms-view" id="view-chatbox" data-view-panel="chatbox" hidden>
+          <div class="card lms-chat-panel">
+            <div id="chatboxRoot" class="lms-chat-root" aria-live="polite"></div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="lms-widgets">
+        <div class="card lms-widget">
+          <h3 data-ac-i18n="yourProgress">Votre progression</h3>
+          <p class="lms-big-pct" id="progressPct">0%</p>
+          <p class="muted" id="progressLabel">0 / 0 étapes</p>
+          <div class="progress-bar lms-progress"><span id="progressFill" style="width:0%"></span></div>
+          <div class="lms-bravo" id="bravoBox">
+            <span aria-hidden="true">🏆</span>
+            <div>
+              <strong id="bravoTitle">Bienvenue !</strong>
+              <p class="muted" id="bravoText">Commencez le module ESSANET Technologie.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card lms-widget" id="resumeCard">
+          <h3 data-ac-i18n="continue">Continuer</h3>
+          <div class="lms-resume" id="resumeBody"></div>
+        </div>
+
+        <div class="card lms-widget">
+          <h3 data-ac-i18n="upcoming">À venir</h3>
+          <ul class="lms-upcoming" id="upcomingList"></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <dialog class="ac-modal cert-modal" id="certModal">
+    <div class="ac-modal-card cert-modal-card">
+      <div class="cert-sheet" id="certSheet">
+        <div class="cert-sheet-inner">
+          <p class="cert-brand">ESSANET Academy</p>
+          <p class="cert-kicker">Certificat de réussite</p>
+          <p class="cert-awarded">est décerné à</p>
+          <h2 class="cert-name" id="certName">—</h2>
+          <p class="cert-names-line"><span id="certFirst">—</span> <span id="certLast">—</span></p>
+          <p class="cert-for">pour avoir terminé avec succès le module</p>
+          <p class="cert-course" id="certCourse">—</p>
+          <p class="cert-date" id="certDate">—</p>
+          <div class="cert-footer">
+            <span>Formation GSMAG</span>
+            <span id="certCode">—</span>
+          </div>
+        </div>
+      </div>
+      <div class="ac-modal-actions cert-modal-actions">
+        <button type="button" class="btn btn-primary" id="btnPrintCert">Imprimer</button>
+        <button type="button" class="btn btn-ghost" id="btnCloseCert">Fermer</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="ac-modal" id="courseModal">
+    <form method="dialog" id="courseForm" class="ac-modal-card">
+      <h2 id="modalTitle">Cours</h2>
+      <input type="hidden" id="editCourseId" />
+      <label>Numéro <input id="editNumber" required /></label>
+      <label>Titre <input id="editTitle" required /></label>
+      <label>Description <textarea id="editDesc" rows="3"></textarea></label>
+      <label>Image du cours (URL ou fichier)
+        <input type="url" id="editImageUrl" placeholder="https://…" />
+        <input type="file" id="editImageFile" accept="image/*" />
+      </label>
+      <div id="editImagePreview" class="tile-preview tile-preview--img"></div>
+      <label>Cadrage
+        <select id="editImageFit">
+          <option value="cover">Remplir (cover)</option>
+          <option value="contain">Contenir (contain)</option>
+        </select>
+      </label>
+      <label>Zoom image <span id="editZoomLabel">100%</span>
+        <input type="range" id="editImageZoom" min="50" max="200" value="100" step="5" />
+      </label>
+      <button type="button" class="btn btn-ghost btn-sm" id="editImageClear">Retirer l’image</button>
+      <div class="ac-modal-actions">
+        <button type="submit" class="btn btn-primary" value="save" id="btnSaveCourse">Enregistrer</button>
+        <button type="button" class="btn btn-ghost" id="btnCancelModal">Annuler</button>
+        <button type="button" class="btn btn-outline" id="btnDeleteCourse" style="display:none;color:#ff8d8d;">Supprimer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="ac-modal" id="userModal">
+    <form method="dialog" id="userForm" class="ac-modal-card">
+      <h2 id="userModalTitle">Utilisateur</h2>
+      <input type="hidden" id="editUserId" />
+      <p class="error" id="userFormError" style="display:none;"></p>
+      <label>Prénom <input id="editUserFirst" required autocomplete="given-name" /></label>
+      <label>Nom <input id="editUserLast" required autocomplete="family-name" /></label>
+      <label>E-mail <input type="email" id="editUserEmail" required autocomplete="username" /></label>
+      <label>Rôle
+        <select id="editUserRole">
+          <option value="client">Apprenant</option>
+          <option value="formateur">Formateur</option>
+          <option value="admin">Administrateur</option>
+        </select>
+      </label>
+      <label id="editUserPasswordLabel">Mot de passe <input type="password" id="editUserPassword" minlength="6" autocomplete="new-password" /></label>
+      <p class="muted" id="editUserPasswordHint" style="font-size:0.8rem;margin:0;">Laissez vide pour ne pas changer le mot de passe.</p>
+      <div class="ac-modal-actions">
+        <button type="submit" class="btn btn-primary" id="btnSaveUser">Enregistrer</button>
+        <button type="button" class="btn btn-ghost" id="btnCancelUserModal">Annuler</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="academy.js"></script>
+  <script src="chat.js"></script>
+  <script>
+    var user = Academy.requireAuth();
+    if (!user) throw new Error("auth");
+    var fresh = Academy.getAllUsers().find(function (u) { return u.id === user.id; });
+    if (fresh) user = Academy.setSession(fresh);
+    var isRealAdmin = Academy.isEditor(user);
+    var editMode = Academy.canEditCurriculum(user);
+
+    document.getElementById("helloName").textContent = Academy.userFirstName(user) || user.name;
+    document.getElementById("sideName").textContent = Academy.userFullName(user);
+    document.getElementById("sideRole").textContent = Academy.roleLabel(user.role);
+    Academy.refreshAvatars(user);
+
+    Academy.syncCertificates(user.id, user);
+
+    if (isRealAdmin) {
+      document.getElementById("viewModeWrap").style.display = "";
+      document.getElementById("viewModeToggle").checked = Academy.getViewMode() === "admin";
+      document.getElementById("viewModeToggle").onchange = function () {
+        Academy.setViewMode(this.checked ? "admin" : "visitor");
+        location.reload();
+      };
+      document.getElementById("navUsers").style.display = "";
+    }
+
+    function refreshEditFlag() {
+      editMode = Academy.canEditCurriculum(user);
+      document.getElementById("adminToolbar").style.display = editMode ? "flex" : "none";
+      document.getElementById("dashHint").textContent = editMode
+        ? "Mode admin : gérez les modules depuis « Mes cours »."
+        : "Validez les quiz pour débloquer la suite et gagner vos certificats.";
+    }
+    refreshEditFlag();
+
+    var currentView = "accueil";
+    var VIEW_META = {
+      accueil: { crumbKey: "navHome", search: false, widgets: false },
+      parcours: { crumbKey: "navPath", search: false, widgets: true },
+      cours: { crumbKey: "navCourses", search: true, widgets: false },
+      certificats: { crumbKey: "navCerts", search: false, widgets: false },
+      utilisateurs: { crumbKey: "navUsers", search: false, widgets: false },
+      chatbox: { crumbKey: "navChat", search: false, widgets: false },
+    };
+
+    function switchView(name) {
+      if (name === "utilisateurs" && !isRealAdmin) name = "accueil";
+      if (!VIEW_META[name]) name = "accueil";
+      currentView = name;
+      document.querySelectorAll("[data-view-panel]").forEach(function (panel) {
+        var on = panel.getAttribute("data-view-panel") === name;
+        panel.hidden = !on;
+        panel.classList.toggle("is-active", on);
+      });
+      document.querySelectorAll(".lms-nav-link[data-view]").forEach(function (link) {
+        link.classList.toggle("is-active", link.getAttribute("data-view") === name);
+      });
+      document.getElementById("crumbPage").textContent = Academy.t(VIEW_META[name].crumbKey);
+      var searchWrap = document.getElementById("courseSearchWrap");
+      if (searchWrap) searchWrap.style.display = VIEW_META[name].search ? "" : "none";
+      document.querySelector(".lms-widgets").hidden = !VIEW_META[name].widgets;
+      document.querySelector(".lms-body").classList.toggle("lms-body--full", !VIEW_META[name].widgets);
+      ["accueil", "parcours", "cours", "certificats", "utilisateurs", "chatbox"].forEach(function (v) {
+        document.body.classList.remove("lms-view-" + v);
+      });
+      document.body.classList.add("lms-view-" + name);
+      try { history.replaceState(null, "", "#" + name); } catch (e) {}
+      if (name === "parcours") renderPath();
+      if (name === "cours") renderTiles();
+      if (name === "accueil") renderHome();
+      if (name === "certificats") renderCerts();
+      if (name === "utilisateurs") renderUsers();
+      if (name === "chatbox" && window.AcademyChat) {
+        AcademyChat.mount(document.getElementById("chatboxRoot"));
+      }
+      document.body.classList.remove("lms-sidebar-open");
+    }
+
+    document.querySelectorAll(".lms-nav-link[data-view]").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        switchView(link.getAttribute("data-view"));
+      });
+    });
+    window.addEventListener("hashchange", function () {
+      var hash = (location.hash || "#accueil").replace("#", "");
+      switchView(VIEW_META[hash] ? hash : "accueil");
+    });
+    document.getElementById("btnContinueHero").addEventListener("click", function (e) {
+      var href = this.getAttribute("href") || "";
+      if (href.indexOf("#") === 0) {
+        e.preventDefault();
+        switchView(href.slice(1) || "parcours");
+      }
+    });
+
+    function openCert(cert) {
+      if (!cert) return;
+      document.getElementById("certName").textContent = cert.fullName || "—";
+      document.getElementById("certFirst").textContent = cert.firstName || "";
+      document.getElementById("certLast").textContent = cert.lastName || "";
+      document.getElementById("certCourse").textContent =
+        (cert.courseNumber ? "Module " + cert.courseNumber + " — " : "") + (cert.courseTitle || "");
+      document.getElementById("certDate").textContent =
+        "Délivré le " + Academy.formatCertDate(cert.issuedAt);
+      document.getElementById("certCode").textContent = String(cert.id || "").toUpperCase();
+      document.getElementById("certModal").showModal();
+    }
+    document.getElementById("btnCloseCert").onclick = function () {
+      document.getElementById("certModal").close();
+    };
+    document.getElementById("btnPrintCert").onclick = function () {
+      window.print();
+    };
+
+    function getCourseAdvancementStats() {
+      var counts = { done: 0, progress: 0, todo: 0, locked: 0, soon: 0, total: 0 };
+      Academy.getCoursesSorted().forEach(function (course) {
+        var status = Academy.courseStatus(user.id, course);
+        counts.total += 1;
+        if (counts[status.key] != null) counts[status.key] += 1;
+      });
+      var prog = Academy.getProgressSummary(user.id);
+      return { counts: counts, prog: prog };
+    }
+
+    function renderCourseStatsInto(el) {
+      if (!el) return;
+      var data = getCourseAdvancementStats();
+      var c = data.counts;
+      var p = data.prog;
+      el.innerHTML =
+        '<div class="lms-course-stats-bar">' +
+          '<div class="lms-course-stat is-done"><strong>' + c.done + '</strong><span>' + Academy.t("statDone") + '</span></div>' +
+          '<div class="lms-course-stat is-progress"><strong>' + c.progress + '</strong><span>' + Academy.t("statProgress") + '</span></div>' +
+          '<div class="lms-course-stat is-todo"><strong>' + c.todo + '</strong><span>' + Academy.t("statTodo") + '</span></div>' +
+          '<div class="lms-course-stat is-pct">' +
+            '<strong>' + p.percent + '%</strong><span>' + Academy.t("statGlobal") + '</span>' +
+            '<div class="progress-bar"><span style="width:' + p.percent + '%"></span></div>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function renderHome() {
+      var courses = Academy.getCoursesSorted();
+      var openCourses = courses.filter(function (c) {
+        return (c.chapters || []).some(function (ch) { return !ch.comingSoon; });
+      });
+      var doneCount = openCourses.filter(function (c) {
+        return Academy.isCourseComplete(user.id, c);
+      }).length;
+      var certs = Academy.syncCertificates(user.id, user);
+      var prog = Academy.getProgressSummary(user.id);
+      var resume = Academy.getResumeLesson(user.id);
+
+      document.getElementById("homeStats").innerHTML =
+        '<div class="lms-stat"><strong>' + doneCount + "/" + openCourses.length + "</strong><span>" + Academy.t("modules") + "</span></div>" +
+        '<div class="lms-stat"><strong>' + certs.length + "</strong><span>" + Academy.t("certificates") + "</span></div>" +
+        '<div class="lms-stat"><strong>' + prog.percent + "%</strong><span>" + Academy.t("progress") + "</span></div>" +
+        '<div class="lms-stat"><strong>' + prog.done + "/" + prog.total + "</strong><span>" + Academy.t("steps") + "</span></div>";
+
+      renderCourseStatsInto(document.getElementById("homeCourseStats"));
+
+      var idleAlert = document.getElementById("trainerIdleAlert");
+      var idleList = document.getElementById("trainerIdleList");
+      if (isRealAdmin) {
+        var idle = Academy.syncIdleTrainerAlerts();
+        if (idle.length) {
+          idleAlert.hidden = false;
+          idleList.innerHTML = idle.map(function (t) {
+            return "<li><strong>" + Academy.userFullName(t) + "</strong> <span class='muted'>" + t.email + "</span></li>";
+          }).join("");
+        } else {
+          idleAlert.hidden = true;
+          idleList.innerHTML = "";
+        }
+      } else {
+        idleAlert.hidden = true;
+      }
+
+      var hero = document.getElementById("btnContinueHero");
+      if (!resume) {
+        hero.href = "#parcours";
+        hero.textContent = Academy.t("resume");
+      } else {
+        hero.href = resume.href;
+        hero.textContent = resume.done ? "Revoir →" : Academy.t("resume");
+      }
+
+      var homeGrid = document.getElementById("homeCourseGrid");
+      homeGrid.innerHTML = "";
+      courses.forEach(function (course) {
+        var unlocked = true;
+        var cp = Academy.courseProgress(user.id, course);
+        var status = Academy.courseStatus(user.id, course);
+        var chaptersCount = (course.chapters || []).filter(function (ch) { return !ch.comingSoon; }).length;
+        var zoom = course.imageZoom != null ? Number(course.imageZoom) : 1;
+        var fit = course.imageFit || "cover";
+        var media = course.image
+          ? '<img class="tile-media-img" src="' + String(course.image).replace(/"/g, "&quot;") + '" alt="" style="object-fit:' + fit + ';transform:scale(' + zoom + ');" />'
+          : '<div class="tile-media-fallback" style="background:linear-gradient(135deg,' + (course.color || "#e03131") + ',#0a1624)"></div>';
+        var tile = document.createElement("article");
+        tile.className = "lms-module";
+        tile.innerHTML =
+          '<div class="lms-module-media">' + media +
+            '<span class="lms-status lms-status--' + status.key + '">' + status.label + "</span>" +
+          "</div>" +
+          '<div class="lms-module-body">' +
+            '<p class="lms-module-kicker">Module ' + (course.number || "") + "</p>" +
+            "<h3>" + course.title + "</h3>" +
+            '<p class="lms-module-meta"><span>📘</span> ' + chaptersCount + " leçon" + (chaptersCount !== 1 ? "s" : "") + "</p>" +
+            '<div class="progress-bar"><span style="width:' + cp.percent + '%"></span></div>' +
+            '<p class="lms-module-pct">' + cp.percent + "% complété</p>" +
+            '<button type="button" class="btn ' +
+              (status.key === "done" ? "btn-outline" : "btn-primary") +
+              ' lms-module-cta btn-sm" data-open="' + course.id + '">' +
+              (status.key === "done" ? "Revoir" : status.key === "progress" ? "Continuer" : "Commencer") +
+            "</button>" +
+          "</div>";
+        tile.querySelector("[data-open]").onclick = function () {
+          location.href = "cours.html?id=" + encodeURIComponent(course.id);
+        };
+        homeGrid.appendChild(tile);
+      });
+
+      document.querySelectorAll("[data-go-view]").forEach(function (btn) {
+        btn.onclick = function () { switchView(btn.getAttribute("data-go-view")); };
+      });
+    }
+
+    function renderCerts() {
+      var grid = document.getElementById("certGrid");
+      var certs = Academy.syncCertificates(user.id, user);
+      if (!certs.length) {
+        grid.innerHTML =
+          '<div class="lms-empty card">' +
+            "<strong>Pas encore de certificat</strong>" +
+            '<p class="muted">Terminez tous les chapitres d’un module (quiz inclus) pour recevoir un certificat à votre nom.</p>' +
+            '<button type="button" class="btn btn-primary btn-sm" data-go-view="parcours">Voir mon parcours</button>' +
+          "</div>";
+        grid.querySelector("[data-go-view]").onclick = function () { switchView("parcours"); };
+        return;
+      }
+      grid.innerHTML = certs.map(function (c) {
+        return '<article class="card lms-cert-card">' +
+          '<p class="lms-cert-kicker">Module ' + (c.courseNumber || "") + "</p>" +
+          "<h3>" + c.courseTitle + "</h3>" +
+          '<p class="lms-cert-holder">' + (c.firstName || "") + " <strong>" + (c.lastName || "") + "</strong></p>" +
+          '<p class="muted">' + Academy.formatCertDate(c.issuedAt) + "</p>" +
+          '<button type="button" class="btn btn-outline btn-sm" data-cert="' + c.id + '">Voir le certificat</button>' +
+        "</article>";
+      }).join("");
+      grid.querySelectorAll("[data-cert]").forEach(function (btn) {
+        btn.onclick = function () {
+          openCert(Academy.getCertificate(user.id, btn.getAttribute("data-cert")));
+        };
+      });
+    }
+
+    var userSearchQ = "";
+    var userRoleQ = "";
+    var selectedUserId = null;
+
+    function openUserModal(id) {
+      var err = document.getElementById("userFormError");
+      err.style.display = "none";
+      err.textContent = "";
+      document.getElementById("editUserId").value = id || "";
+      if (id) {
+        var u = Academy.listUsers().find(function (x) { return x.id === id; });
+        if (!u) return;
+        document.getElementById("userModalTitle").textContent = "Modifier l’utilisateur";
+        document.getElementById("editUserFirst").value = u.firstName || Academy.userFirstName(u);
+        document.getElementById("editUserLast").value = u.lastName || Academy.userLastName(u);
+        document.getElementById("editUserEmail").value = u.email || "";
+        document.getElementById("editUserRole").value = u.role || "client";
+        document.getElementById("editUserPassword").value = "";
+        document.getElementById("editUserPassword").required = false;
+        document.getElementById("editUserPasswordHint").style.display = "";
+      } else {
+        document.getElementById("userModalTitle").textContent = "Nouvel utilisateur";
+        document.getElementById("editUserFirst").value = "";
+        document.getElementById("editUserLast").value = "";
+        document.getElementById("editUserEmail").value = "";
+        document.getElementById("editUserRole").value = "client";
+        document.getElementById("editUserPassword").value = "";
+        document.getElementById("editUserPassword").required = true;
+        document.getElementById("editUserPasswordHint").style.display = "none";
+      }
+      document.getElementById("userModal").showModal();
+    }
+
+    function showUserDetail(userId) {
+      selectedUserId = userId;
+      var u = Academy.listUsers().find(function (x) { return x.id === userId; });
+      var panel = document.getElementById("userDetailPanel");
+      if (!u) {
+        panel.hidden = true;
+        return;
+      }
+      panel.hidden = false;
+      document.getElementById("userDetailName").textContent = Academy.userFullName(u);
+      document.getElementById("userDetailMeta").textContent =
+        u.email + " · " + Academy.roleLabel(u.role);
+      var prog = Academy.getProgressSummary(userId);
+      var certs = Academy.syncCertificates(userId, u);
+      document.getElementById("userDetailStats").innerHTML =
+        '<div class="lms-stat"><strong>' + prog.percent + "%</strong><span>Global</span></div>" +
+        '<div class="lms-stat"><strong>' + prog.done + "/" + prog.total + "</strong><span>Étapes</span></div>" +
+        '<div class="lms-stat"><strong>' + certs.length + "</strong><span>Certificats</span></div>";
+      var courses = Academy.getUserCourseProgress(userId);
+      document.getElementById("userDetailCourses").innerHTML = courses.map(function (c) {
+        var chHtml = (c.chapters || []).map(function (ch) {
+          return '<li class="' + (ch.quizPassed ? "is-done" : "") + '">' +
+            "<span>" + (ch.quizPassed ? "✓" : "○") + "</span> " + ch.title +
+            '<em>' + ch.percent + "%</em></li>";
+        }).join("");
+        return '<article class="lms-user-course">' +
+          '<div class="lms-user-course-top">' +
+            '<span class="lms-status lms-status--' + c.status.key + '" style="position:static;display:inline-flex;">' + c.status.label + "</span>" +
+            "<strong>Module " + (c.number || "") + " — " + c.title + "</strong>" +
+            "<span class=\"muted\">" + c.percent + "%</span>" +
+          "</div>" +
+          '<div class="progress-bar"><span style="width:' + c.percent + '%"></span></div>' +
+          (chHtml ? '<ul class="lms-user-chapters">' + chHtml + "</ul>" : '<p class="muted" style="font-size:0.8rem;margin:0.4rem 0 0;">Aucun chapitre ouvert</p>') +
+        "</article>";
+      }).join("") || '<p class="muted">Aucun module.</p>';
+      panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function renderUsers() {
+      if (!isRealAdmin) return;
+      var body = document.getElementById("usersManageBody");
+      var q = userSearchQ.trim().toLowerCase();
+      var list = Academy.listUsers().filter(function (u) {
+        if (userRoleQ && u.role !== userRoleQ) return false;
+        if (!q) return true;
+        var blob = (Academy.userFullName(u) + " " + (u.email || "")).toLowerCase();
+        return blob.indexOf(q) >= 0;
+      });
+      if (!list.length) {
+        body.innerHTML = "<tr><td colspan='5' class='muted'>Aucun utilisateur.</td></tr>";
+        return;
+      }
+      body.innerHTML = list.map(function (u) {
+        var prog = Academy.getProgressSummary(u.id);
+        var certs = Academy.getUserCertificates(u.id).length;
+        var self = u.id === user.id;
+        var idleTrainer = u.role === "formateur" && !Academy.hasStartedTraining(u.id);
+        return "<tr class='" + (idleTrainer ? "lms-row-alert" : "") + "'>" +
+          "<td><strong>" + Academy.userFullName(u) + "</strong><br /><span class='muted'>" + u.email + "</span>" +
+            (idleTrainer
+              ? "<br /><span class='lms-idle-badge'>" + Academy.t("trainerIdleBadge") + "</span>"
+              : "") +
+          "</td>" +
+          "<td><span class='pill " + u.role + "'>" + Academy.roleLabel(u.role) + "</span></td>" +
+          "<td><div class='lms-mini-prog'><strong" + (idleTrainer ? " class='is-alert'" : "") + ">" + prog.percent + "%</strong>" +
+            "<div class='progress-bar'><span style='width:" + prog.percent + "%'></span></div>" +
+            "<span class='muted'>" + prog.done + "/" + prog.total + "</span></div></td>" +
+          "<td>" + certs + "</td>" +
+          "<td class='lms-user-actions'>" +
+            "<button type='button' class='btn btn-ghost btn-sm' data-track='" + u.id + "'>Suivi</button>" +
+            "<button type='button' class='btn btn-outline btn-sm' data-edit-user='" + u.id + "'>Modifier</button>" +
+            (self ? "" : "<button type='button' class='btn btn-ghost btn-sm' data-del-user='" + u.id + "' style='color:#c0392b;'>Suppr.</button>") +
+          "</td></tr>";
+      }).join("");
+      body.querySelectorAll("[data-track]").forEach(function (btn) {
+        btn.onclick = function () { showUserDetail(btn.getAttribute("data-track")); };
+      });
+      body.querySelectorAll("[data-edit-user]").forEach(function (btn) {
+        btn.onclick = function () { openUserModal(btn.getAttribute("data-edit-user")); };
+      });
+      body.querySelectorAll("[data-del-user]").forEach(function (btn) {
+        btn.onclick = function () {
+          var id = btn.getAttribute("data-del-user");
+          var u = Academy.listUsers().find(function (x) { return x.id === id; });
+          if (!u || !confirm("Supprimer " + Academy.userFullName(u) + " ?")) return;
+          var res = Academy.deleteUser(id, user.id);
+          if (!res.ok) {
+            alert(res.error || "Suppression impossible.");
+            return;
+          }
+          if (selectedUserId === id) {
+            selectedUserId = null;
+            document.getElementById("userDetailPanel").hidden = true;
+          }
+          renderUsers();
+        };
+      });
+      if (selectedUserId) showUserDetail(selectedUserId);
+    }
+
+    document.getElementById("btnAddUser").onclick = function () { openUserModal(null); };
+    document.getElementById("btnCancelUserModal").onclick = function () {
+      document.getElementById("userModal").close();
+    };
+    document.getElementById("btnCloseUserDetail").onclick = function () {
+      selectedUserId = null;
+      document.getElementById("userDetailPanel").hidden = true;
+    };
+    document.getElementById("userSearch").addEventListener("input", function () {
+      userSearchQ = this.value;
+      renderUsers();
+    });
+    document.getElementById("userRoleFilter").addEventListener("change", function () {
+      userRoleQ = this.value;
+      renderUsers();
+    });
+    document.getElementById("userForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = document.getElementById("userFormError");
+      var id = document.getElementById("editUserId").value;
+      var payload = {
+        firstName: document.getElementById("editUserFirst").value.trim(),
+        lastName: document.getElementById("editUserLast").value.trim(),
+        email: document.getElementById("editUserEmail").value.trim(),
+        role: document.getElementById("editUserRole").value,
+        password: document.getElementById("editUserPassword").value,
+      };
+      var res = id
+        ? Academy.updateUser(id, payload)
+        : Academy.createUser(payload);
+      if (!res.ok) {
+        err.style.display = "";
+        err.textContent = res.error || "Erreur";
+        return;
+      }
+      document.getElementById("userModal").close();
+      if (id === user.id) {
+        var freshUser = Academy.getUserById(user.id);
+        if (freshUser) user = Academy.setSession(freshUser);
+        document.getElementById("sideName").textContent = Academy.userFullName(user);
+        document.getElementById("helloName").textContent = Academy.userFirstName(user) || user.name;
+      }
+      renderUsers();
+    });
+
+    function renderPath() {
+      var list = document.getElementById("pathList");
+      list.innerHTML = "";
+      Academy.getCoursesSorted().forEach(function (course, idx) {
+        var status = Academy.courseStatus(user.id, course);
+        var cp = Academy.courseProgress(user.id, course);
+        var chapters = (course.chapters || []).filter(function (ch) { return !ch.comingSoon; });
+        var li = document.createElement("li");
+        li.className = "lms-path-step is-" + status.key;
+        var chHtml = chapters.map(function (ch) {
+          var p = Academy.chapterProgress(user.id, ch.id);
+          var mark = p.quizPassed ? "✓" : "○";
+          return '<li class="' + (p.quizPassed ? "is-done" : "") + '">' +
+            "<span>" + mark + "</span> " + ch.title +
+            ' <a href="chapitre.html?id=' + encodeURIComponent(ch.id) + '">Ouvrir</a>' +
+          "</li>";
+        }).join("");
+        li.innerHTML =
+          '<div class="lms-path-index">' + (idx + 1) + "</div>" +
+          '<div class="lms-path-card card">' +
+            '<div class="lms-path-top">' +
+              '<span class="lms-status lms-status--' + status.key + '">' + status.label + "</span>" +
+              "<h3>Module " + (course.number || "") + " — " + course.title + "</h3>" +
+              '<p class="muted">' + (course.description || "") + "</p>" +
+              '<div class="progress-bar" style="margin:0.65rem 0 0.35rem;"><span style="width:' + cp.percent + '%"></span></div>' +
+              '<p class="muted" style="font-size:0.8rem;margin:0;">' + cp.percent + "% · " + chapters.length + " chapitre(s)</p>" +
+            "</div>" +
+            (chapters.length ? '<ol class="lms-path-chapters">' + chHtml + "</ol>" : "") +
+            '<a class="btn btn-primary btn-sm" href="cours.html?id=' + encodeURIComponent(course.id) + '">Entrer dans le module</a>' +
+          "</div>";
+        list.appendChild(li);
+      });
+    }
+    function refreshProgress() {
+      var prog = Academy.getProgressSummary(user.id);
+      document.getElementById("progressPct").textContent = prog.percent + "%";
+      document.getElementById("progressFill").style.width = prog.percent + "%";
+      document.getElementById("progressLabel").textContent = prog.done + " / " + prog.total + " étapes";
+      var bravoTitle = document.getElementById("bravoTitle");
+      var bravoText = document.getElementById("bravoText");
+      if (prog.percent >= 100) {
+        bravoTitle.textContent = Academy.t("pathDone");
+        bravoText.textContent = Academy.t("pathDoneText");
+      } else if (prog.percent >= 50) {
+        bravoTitle.textContent = Academy.t("bravo");
+        bravoText.textContent = Academy.t("bravoText");
+      } else if (prog.percent > 0) {
+        bravoTitle.textContent = Academy.t("goodPace");
+        bravoText.textContent = Academy.t("goodPaceText");
+      } else {
+        bravoTitle.textContent = Academy.t("welcome");
+        bravoText.textContent = Academy.t("welcomeText");
+      }
+    }
+
+    function renderResume() {
+      var resume = Academy.getResumeLesson(user.id);
+      var hero = document.getElementById("btnContinueHero");
+      var body = document.getElementById("resumeBody");
+      if (!resume) {
+        body.innerHTML = '<p class="muted">Aucun module disponible.</p>';
+        hero.href = "#parcours";
+        return;
+      }
+      hero.href = resume.href;
+      hero.textContent = resume.done ? "Revoir le parcours →" : "Continuer l’apprentissage →";
+      body.innerHTML =
+        '<div class="lms-resume-row">' +
+          (resume.course.image
+            ? '<img src="' + String(resume.course.image).replace(/"/g, "") + '" alt="" />'
+            : '<div class="lms-resume-ph"></div>') +
+          "<div>" +
+            '<p class="muted" style="margin:0;font-size:0.78rem;">Module ' + (resume.course.number || "") + "</p>" +
+            "<strong>" + resume.chapter.title + "</strong>" +
+            '<div class="progress-bar" style="margin-top:0.45rem;"><span style="width:' + resume.percent + '%"></span></div>' +
+          "</div>" +
+        "</div>" +
+        '<a class="btn btn-teal" style="width:100%;margin-top:0.85rem;justify-content:center;" href="' + resume.href + '">' +
+          (resume.done ? "Revoir" : "Reprendre") +
+        "</a>";
+    }
+
+    function renderUpcoming() {
+      var list = document.getElementById("upcomingList");
+      var items = Academy.getUpcomingLessons(user.id, 3);
+      if (!items.length) {
+        list.innerHTML = '<li class="muted">' + Academy.t("allUpToDate") + "</li>";
+        return;
+      }
+      list.innerHTML = items.map(function (it) {
+        return "<li>" +
+          '<span class="lms-up-ico" aria-hidden="true">▶</span>' +
+          "<div><strong>" + it.chapter.title + "</strong>" +
+          '<p class="muted">Module ' + (it.course.number || "") + " · " + it.duration + "</p></div></li>";
+      }).join("");
+    }
+
+    function renderNotifications() {
+      var badge = document.getElementById("notifBadge");
+      var list = document.getElementById("notifList");
+      var notes = Academy.getNotifications(user.id);
+      var unread = Academy.getUnreadNotificationCount(user.id);
+      if (unread > 0) {
+        badge.style.display = "";
+        badge.textContent = unread > 9 ? "9+" : String(unread);
+      } else {
+        badge.style.display = "none";
+      }
+      if (!notes.length) {
+        list.innerHTML = '<li class="muted lms-notif-empty">' + Academy.t("noNotif") + "</li>";
+        return;
+      }
+      list.innerHTML = notes.map(function (n) {
+        var ico = n.type === "certificate" ? "★" : n.type === "user_registered" ? "👤" : n.type === "course_completed" ? "✓" : n.type === "trainer_idle" ? "!" : "•";
+        return '<li class="lms-notif-item' + (n.read ? "" : " is-unread") + '">' +
+          '<button type="button" class="lms-notif-btn" data-notif-id="' + n.id + '" data-href="' + String(n.href || "").replace(/"/g, "") + '">' +
+            '<span class="lms-notif-ico" aria-hidden="true">' + ico + "</span>" +
+            "<div>" +
+              "<strong>" + n.title + "</strong>" +
+              '<p class="muted">' + n.body + "</p>" +
+              '<span class="lms-notif-time">' + Academy.formatNotifTime(n.createdAt) + "</span>" +
+            "</div>" +
+          "</button></li>";
+      }).join("");
+      list.querySelectorAll("[data-notif-id]").forEach(function (btn) {
+        btn.onclick = function () {
+          var id = btn.getAttribute("data-notif-id");
+          var href = btn.getAttribute("data-href");
+          Academy.markNotificationRead(user.id, id);
+          Academy.closeAllMenus();
+          if (href) {
+            if (href.indexOf("dashboard.html#") === 0 || href.charAt(0) === "#") {
+              var hash = href.indexOf("#") >= 0 ? href.split("#")[1] : "";
+              if (location.pathname.indexOf("dashboard") >= 0 && hash && VIEW_META[hash]) {
+                switchView(hash);
+                renderNotifications();
+                return;
+              }
+            }
+            location.href = href;
+            return;
+          }
+          renderNotifications();
+        };
+      });
+    }
+
+    var notifMenu = document.querySelector("[data-notif-menu]");
+    document.getElementById("notifBtn").onclick = function (e) {
+      e.stopPropagation();
+      var open = !notifMenu.classList.contains("is-open");
+      Academy.closeAllMenus();
+      if (open) {
+        notifMenu.classList.add("is-open");
+        renderNotifications();
+      }
+    };
+    document.getElementById("notifPanel").addEventListener("click", function (e) { e.stopPropagation(); });
+    document.getElementById("notifMarkAll").onclick = function () {
+      Academy.markAllNotificationsRead(user.id);
+      renderNotifications();
+    };
+
+    var grid = document.getElementById("tileGrid");
+    var dragId = null;
+    var pendingImage = "";
+    var searchQ = "";
+
+    function zoomValue() { return Number(document.getElementById("editImageZoom").value || 100) / 100; }
+    function fitValue() { return document.getElementById("editImageFit").value || "cover"; }
+
+    function actionLabel(status) {
+      if (status.key === "done") return Academy.t("reviewBtn");
+      if (status.key === "progress") return Academy.t("continueBtn");
+      if (status.key === "soon") return Academy.t("soon");
+      return Academy.t("startBtn");
+    }
+
+    function renderTiles() {
+      editMode = Academy.canEditCurriculum(user);
+      renderCourseStatsInto(document.getElementById("coursPageStats"));
+      grid.innerHTML = "";
+      var q = searchQ.trim().toLowerCase();
+      Academy.getCoursesSorted().forEach(function (course) {
+        if (q && !(course.title + " " + (course.description || "")).toLowerCase().includes(q)) return;
+        var cp = Academy.courseProgress(user.id, course);
+        var status = Academy.courseStatus(user.id, course);
+        var chaptersCount = (course.chapters || []).filter(function (ch) { return !ch.comingSoon; }).length;
+        var tile = document.createElement("article");
+        tile.className = "lms-module" + (editMode ? " is-editable" : "");
+        tile.dataset.id = course.id;
+        if (editMode) tile.draggable = true;
+
+        var zoom = course.imageZoom != null ? Number(course.imageZoom) : 1;
+        var fit = course.imageFit || "cover";
+        var media = course.image
+          ? '<img class="tile-media-img" src="' + String(course.image).replace(/"/g, "&quot;") + '" alt="" style="object-fit:' + fit + ';transform:scale(' + zoom + ');" />'
+          : '<div class="tile-media-fallback" style="background:linear-gradient(135deg,' + (course.color || "#e03131") + ',#0a1624)"></div>';
+
+        tile.innerHTML =
+          '<div class="lms-module-media">' + media +
+            '<span class="lms-status lms-status--' + status.key + '">' + status.label + "</span>" +
+            (editMode ? '<button type="button" class="lms-dots" data-edit="' + course.id + '" aria-label="Modifier">⋮</button>' : "") +
+          "</div>" +
+          '<div class="lms-module-body">' +
+            '<p class="lms-module-kicker">Module ' + (course.number || "") + "</p>" +
+            "<h3>" + course.title + "</h3>" +
+            '<p class="tile-desc">' + (course.description || "") + "</p>" +
+            '<p class="lms-module-meta"><span>📘</span> ' + chaptersCount + " leçon" + (chaptersCount !== 1 ? "s" : "") + "</p>" +
+            '<div class="progress-bar"><span style="width:' + cp.percent + '%"></span></div>' +
+            '<p class="lms-module-pct">' + cp.percent + "% complété</p>" +
+            '<button type="button" class="btn ' +
+              (status.key === "done" ? "btn-outline" : "btn-primary") +
+              ' lms-module-cta" data-open="' + course.id + '">' + actionLabel(status) + "</button>" +
+          "</div>";
+
+        tile.querySelector("[data-open]").onclick = function (e) {
+          e.stopPropagation();
+          location.href = "cours.html?id=" + encodeURIComponent(course.id);
+        };
+
+        if (editMode) {
+          tile.addEventListener("dragstart", function (e) {
+            dragId = course.id;
+            tile.classList.add("is-dragging");
+            e.dataTransfer.effectAllowed = "move";
+          });
+          tile.addEventListener("dragend", function () {
+            tile.classList.remove("is-dragging");
+            dragId = null;
+          });
+          tile.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            tile.classList.add("is-drop-target");
+          });
+          tile.addEventListener("dragleave", function () { tile.classList.remove("is-drop-target"); });
+          tile.addEventListener("drop", function (e) {
+            e.preventDefault();
+            tile.classList.remove("is-drop-target");
+            if (!dragId || dragId === course.id) return;
+            var ids = Academy.getCoursesSorted().map(function (c) { return c.id; });
+            var from = ids.indexOf(dragId);
+            var to = ids.indexOf(course.id);
+            if (from < 0 || to < 0) return;
+            ids.splice(from, 1);
+            ids.splice(to, 0, dragId);
+            Academy.reorderCourses(ids);
+            renderTiles();
+          });
+        }
+
+        grid.appendChild(tile);
+      });
+
+      if (editMode) {
+        var add = document.createElement("button");
+        add.type = "button";
+        add.className = "lms-module lms-module-add";
+        add.innerHTML = "<span>+ Ajouter un module</span>";
+        add.onclick = function () { openModal(null); };
+        grid.appendChild(add);
+      }
+
+      grid.querySelectorAll("[data-edit]").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          openModal(btn.getAttribute("data-edit"));
+        });
+      });
+    }
+
+    var modal = document.getElementById("courseModal");
+    function openModal(id) {
+      pendingImage = "";
+      document.getElementById("editImageFile").value = "";
+      document.getElementById("btnDeleteCourse").style.display = id ? "" : "none";
+      if (id) {
+        var course = Academy.getCourse(id);
+        document.getElementById("modalTitle").textContent = "Modifier le module";
+        document.getElementById("editCourseId").value = id;
+        document.getElementById("editNumber").value = course.number || "";
+        document.getElementById("editTitle").value = course.title || "";
+        document.getElementById("editDesc").value = course.description || "";
+        document.getElementById("editImageUrl").value = course.image && String(course.image).indexOf("data:") !== 0 ? course.image : "";
+        pendingImage = course.image || "";
+        document.getElementById("editImageFit").value = course.imageFit || "cover";
+        document.getElementById("editImageZoom").value = String(Math.round((course.imageZoom != null ? course.imageZoom : 1) * 100));
+      } else {
+        document.getElementById("modalTitle").textContent = "Nouveau module";
+        document.getElementById("editCourseId").value = "";
+        document.getElementById("editNumber").value = String(Academy.getCoursesSorted().length);
+        document.getElementById("editTitle").value = "";
+        document.getElementById("editDesc").value = "";
+        document.getElementById("editImageUrl").value = "";
+        document.getElementById("editImageFit").value = "cover";
+        document.getElementById("editImageZoom").value = "100";
+      }
+      document.getElementById("editZoomLabel").textContent = document.getElementById("editImageZoom").value + "%";
+      updatePreview();
+      modal.showModal();
+    }
+
+    function updatePreview() {
+      var box = document.getElementById("editImagePreview");
+      if (pendingImage) {
+        box.innerHTML = '<img src="' + String(pendingImage).replace(/"/g, "&quot;") + '" alt="" style="object-fit:' + fitValue() + ';transform:scale(' + zoomValue() + ');" />';
+      } else {
+        box.innerHTML = '<span class="muted">Aperçu image</span>';
+      }
+    }
+
+    document.getElementById("editImageZoom").addEventListener("input", function () {
+      document.getElementById("editZoomLabel").textContent = this.value + "%";
+      updatePreview();
+    });
+    document.getElementById("editImageFit").addEventListener("change", updatePreview);
+    document.getElementById("editImageUrl").addEventListener("change", function () {
+      pendingImage = this.value.trim();
+      updatePreview();
+    });
+    document.getElementById("editImageFile").addEventListener("change", function () {
+      var file = this.files && this.files[0];
+      if (!file) return;
+      Academy.readImageFile(file, 1400).then(function (dataUrl) {
+        pendingImage = dataUrl;
+        updatePreview();
+      });
+    });
+    document.getElementById("editImageClear").onclick = function () {
+      pendingImage = "";
+      document.getElementById("editImageUrl").value = "";
+      document.getElementById("editImageFile").value = "";
+      updatePreview();
+    };
+    document.getElementById("btnCancelModal").onclick = function () { modal.close(); };
+    document.getElementById("btnDeleteCourse").onclick = function () {
+      var id = document.getElementById("editCourseId").value;
+      if (id && confirm("Supprimer ce module et ses chapitres ?")) {
+        Academy.deleteCourse(id);
+        modal.close();
+        renderAll();
+      }
+    };
+    document.getElementById("courseForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var id = document.getElementById("editCourseId").value;
+      var patch = {
+        number: document.getElementById("editNumber").value.trim(),
+        title: document.getElementById("editTitle").value.trim(),
+        description: document.getElementById("editDesc").value.trim(),
+        image: pendingImage || document.getElementById("editImageUrl").value.trim(),
+        imageFit: fitValue(),
+        imageZoom: zoomValue(),
+      };
+      try {
+        if (id) Academy.updateCourse(id, patch);
+        else Academy.addCourse(patch);
+        modal.close();
+        renderAll();
+      } catch (err) {}
+    });
+    document.getElementById("btnAddCourse").onclick = function () { openModal(null); };
+    document.getElementById("btnResetCurriculum").onclick = function () {
+      if (confirm("Réinitialiser le programme aux modules ESSANET d’origine ?")) {
+        Academy.resetCurriculum();
+        renderAll();
+      }
+    };
+
+    document.getElementById("courseSearch").addEventListener("input", function () {
+      searchQ = this.value;
+      renderTiles();
+    });
+
+    document.getElementById("burgerBtn").onclick = function () {
+      document.body.classList.toggle("lms-sidebar-open");
+    };
+
+    function renderAll() {
+      refreshEditFlag();
+      if (isRealAdmin) Academy.syncIdleTrainerAlerts();
+      refreshProgress();
+      renderResume();
+      renderUpcoming();
+      renderNotifications();
+      renderHome();
+      renderPath();
+      renderTiles();
+      renderCerts();
+      if (isRealAdmin) renderUsers();
+      Academy.applyTheme(Academy.getTheme());
+      var hash = (location.hash || "#accueil").replace("#", "");
+      switchView(VIEW_META[hash] ? hash : "accueil");
+    }
+
+    renderAll();
+    document.addEventListener("academy:lang", function () {
+      document.getElementById("sideRole").textContent = Academy.roleLabel(user.role);
+      var root = document.getElementById("chatboxRoot");
+      if (root && window.AcademyChat) root.removeAttribute("data-mounted");
+      renderAll();
+    });
+  </script>
+</body>
+</html>

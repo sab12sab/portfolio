@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cours — ESSANET Academy</title>
+  <script>!function(){try{var t=localStorage.getItem("gsmag-academy-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}}()</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="academy.css" />
+</head>
+<body class="lms-shell">
+  <aside class="lms-sidebar" id="lmsSidebar">
+    <a class="lms-brand" href="dashboard.html">
+      <img src="../assets/logo-g.png" alt="GSMAG" />
+      <span>ESSANET Academy</span>
+    </a>
+    <nav class="lms-nav">
+      <a class="lms-nav-link" href="dashboard.html#accueil"><span class="lms-nav-ico" aria-hidden="true">⌂</span> <span data-ac-i18n="navHome">Accueil</span></a>
+      <a class="lms-nav-link" href="dashboard.html#parcours"><span class="lms-nav-ico" aria-hidden="true">◎</span> <span data-ac-i18n="navPath">Mon parcours</span></a>
+      <a class="lms-nav-link is-active" href="dashboard.html#cours"><span class="lms-nav-ico" aria-hidden="true">▣</span> <span data-ac-i18n="navCourses">Mes cours</span></a>
+      <a class="lms-nav-link is-soon" href="#" data-ac-i18n-title="soon" title="Bientôt"><span class="lms-nav-ico" aria-hidden="true">◷</span> <span data-ac-i18n="navCalendar">Calendrier</span></a>
+      <a class="lms-nav-link" href="dashboard.html#certificats"><span class="lms-nav-ico" aria-hidden="true">★</span> <span data-ac-i18n="navCerts">Certificats</span></a>
+      <a class="lms-nav-link lms-nav-admin" href="dashboard.html#utilisateurs" id="navUsers" style="display:none;"><span class="lms-nav-ico" aria-hidden="true">👤</span> <span data-ac-i18n="navUsers">Utilisateurs</span></a>
+      <a class="lms-nav-link" href="dashboard.html#chatbox"><span class="lms-nav-ico" aria-hidden="true">💬</span> <span data-ac-i18n="navChat">Chatbox</span></a>
+    </nav>
+    <div class="lms-sidebar-foot">
+      <div class="lms-user-card">
+        <span class="ac-avatar" id="sideAvatar">A</span>
+        <div class="lms-user-meta">
+          <strong id="sideName">…</strong>
+          <span id="sideRole">Apprenant</span>
+        </div>
+      </div>
+      <p class="lms-version">ESSANET Academy · v1.0</p>
+    </div>
+  </aside>
+
+  <div class="lms-main">
+    <header class="lms-topbar">
+      <button type="button" class="ac-icon-btn lms-burger" id="burgerBtn" aria-label="Menu">☰</button>
+      <p class="lms-breadcrumb"><span>Espace</span> <span>/</span> <strong id="crumbPage">Cours</strong></p>
+      <div class="lms-topbar-right">
+        <label class="lms-mode-toggle" id="viewModeWrap" style="display:none;">
+          <span>Admin</span>
+          <input type="checkbox" id="viewModeToggle" />
+          <i></i>
+        </label>
+        <nav class="ac-nav lms-top-actions"></nav>
+        <div class="ac-menu lms-notif-menu" data-notif-menu="1">
+          <button type="button" class="ac-icon-btn" id="notifBtn" aria-label="Notifications" title="Notifications">
+            <span aria-hidden="true">🔔</span>
+            <span class="lms-badge" id="notifBadge" style="display:none;">0</span>
+          </button>
+          <div class="ac-menu-panel lms-notif-panel" id="notifPanel" role="menu">
+            <div class="lms-notif-head">
+              <strong>Notifications</strong>
+              <button type="button" class="btn btn-ghost btn-sm" id="notifMarkAll">Tout lu</button>
+            </div>
+            <ul class="lms-notif-list" id="notifList"></ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="lms-body lms-body--full">
+      <div class="lms-content">
+        <div class="aws-hero card">
+          <p class="eyebrow" id="courseEyebrow">Cours</p>
+          <h1 id="courseTitle" style="font-family:var(--display);margin:0 0 0.5rem;letter-spacing:-0.03em;"></h1>
+          <p class="muted" id="courseDesc" style="margin:0 0 1rem;max-width:60ch;"></p>
+          <div class="aws-stats">
+            <div><strong id="statChapters">0</strong><span>chapitres</span></div>
+            <div><strong id="statTime">—</strong><span>durée estimée</span></div>
+            <div><strong id="statProgress">0%</strong><span>progression</span></div>
+            <div><strong id="statPass">70%</strong><span>note mini quiz</span></div>
+          </div>
+          <p class="muted" id="lockMsg" style="display:none;margin:1rem 0 0;color:#ff8d8d;"></p>
+          <p style="margin:1rem 0 0;display:none;" id="adminChapterBar">
+            <button type="button" class="btn btn-teal" id="btnAddChapter">+ Ajouter un chapitre</button>
+            <span class="muted" style="font-size:0.85rem;margin-left:0.5rem;">Illimité — sous-chapitres A/B/C + captures</span>
+          </p>
+        </div>
+
+        <div class="aws-course-list" id="chapterList"></div>
+      </div>
+    </div>
+  </div>
+
+  <dialog class="ac-modal" id="chapterModal">
+    <form class="ac-modal-card ac-modal-card--wide" id="chapterForm">
+      <h2 id="chapterModalTitle">Chapitre</h2>
+      <p class="muted" style="margin:0;font-size:0.88rem;">Ajoutez autant de chapitres que vous voulez. Chaque chapitre contient des sous-chapitres (A, B, C…) avec étapes et captures.</p>
+      <input type="hidden" id="cId" />
+      <label>Code (ex. 1.1) <input id="cCode" placeholder="1.1" /></label>
+      <label>Titre <input id="cTitle" required placeholder="Fichier Articles" /></label>
+      <label>Durée <input id="cDuration" value="20 min" /></label>
+      <label>Niveau <input id="cLevel" value="Débutant" /></label>
+      <label>Description / à quoi sert <textarea id="cPurpose" rows="2" placeholder="Cette rubrique permet de…"></textarea></label>
+
+      <div class="editor-block">
+        <strong>Icône du chapitre (petite, à côté du titre)</strong>
+        <div id="cImagePreview" class="chapter-icon-preview"></div>
+        <label>URL image <input type="url" id="cImageUrl" placeholder="https://…" /></label>
+        <label>Ou fichier <input type="file" id="cImageFile" accept="image/*" /></label>
+        <button type="button" class="btn btn-ghost btn-sm" id="cImageClear">Retirer l’icône</button>
+      </div>
+
+      <div class="editor-block">
+        <strong>Vidéo du chapitre (optionnel)</strong>
+        <p class="muted" style="margin:0.35rem 0 0.5rem;font-size:0.85rem;">Si vide, le chapitre s’appuie sur les étapes + captures uniquement.</p>
+        <label>URL embed YouTube / Vimeo <input id="cVideo" placeholder="https://www.youtube.com/embed/…" /></label>
+      </div>
+
+      <label>Note mini quiz (%) <input id="cPass" type="number" min="1" max="100" value="70" /></label>
+
+      <div class="editor-block">
+        <div class="editor-head">
+          <strong>Sous-chapitres (A, B, C…) + étapes &amp; captures</strong>
+          <button type="button" class="btn btn-outline btn-sm" id="btnAddSection">+ Sous-chapitre</button>
+        </div>
+        <p class="muted" style="margin:0.35rem 0 0.65rem;font-size:0.82rem;">Ex. A. Créer une catégorie — chaque ligne = une étape, capture optionnelle en dessous.</p>
+        <div id="sectionsEditor"></div>
+      </div>
+
+      <div class="editor-block">
+        <div class="editor-head">
+          <strong>Quiz de fin de chapitre</strong>
+          <button type="button" class="btn btn-outline btn-sm" id="btnAddQuestion">+ Question</button>
+        </div>
+        <div id="quizEditor"></div>
+      </div>
+
+      <div class="ac-modal-actions">
+        <button type="submit" class="btn btn-primary" id="btnSaveChapter">Enregistrer</button>
+        <button type="button" class="btn btn-ghost" id="cCancel">Annuler</button>
+        <button type="button" class="btn btn-outline" id="btnDeleteChapter" style="display:none;color:#ff8d8d;">Supprimer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="academy.js"></script>
+  <script>
+    var user = Academy.requireAuth();
+    if (!user) throw new Error("auth");
+    var isEditor = Academy.isEditor(user);
+    var fresh = Academy.getAllUsers().find(function (u) { return u.id === user.id; });
+    if (fresh) user = Academy.setSession(fresh);
+
+    document.getElementById("sideName").textContent = Academy.userFullName(user);
+    document.getElementById("sideRole").textContent = Academy.roleLabel(user.role);
+    Academy.refreshAvatars(user);
+    if (isEditor) {
+      document.getElementById("navUsers").style.display = "";
+      document.getElementById("viewModeWrap").style.display = "";
+      document.getElementById("viewModeToggle").checked = Academy.getViewMode() === "admin";
+      document.getElementById("viewModeToggle").onchange = function () {
+        Academy.setViewMode(this.checked ? "admin" : "visitor");
+        location.reload();
+      };
+    }
+    document.getElementById("burgerBtn").onclick = function () {
+      document.body.classList.toggle("lms-sidebar-open");
+    };
+    Academy.mountNotifications(user.id);
+    Academy.applyLang(Academy.getLang());
+    document.addEventListener("academy:lang", function () {
+      document.getElementById("sideRole").textContent = Academy.roleLabel(user.role);
+      Academy.mountNotifications(user.id);
+    });
+
+    var courseId = new URLSearchParams(location.search).get("id");
+    var course = Academy.getCourse(courseId);
+    if (!course) location.href = "dashboard.html";
+
+    var unlocked = true;
+
+    document.getElementById("crumbPage").textContent = "Cours " + (course.number || "");
+    document.getElementById("courseEyebrow").textContent = "Cours " + (course.number || "") + " · Chapitres";
+    document.getElementById("courseTitle").textContent = course.title;
+    document.getElementById("courseDesc").textContent = course.description || "";
+    document.title = course.title + " — ESSANET Academy";
+    if (isEditor) document.getElementById("adminChapterBar").style.display = "";
+
+    var pass = Academy.getCurriculum().passPercent || 70;
+    document.getElementById("statPass").textContent = pass + "%";
+
+    var list = document.getElementById("chapterList");
+    var chapterModal = document.getElementById("chapterModal");
+    var editSections = [];
+    var editQuiz = [];
+    var pendingChapterImage = "";
+
+    function refreshStats() {
+      course = Academy.getCourse(courseId);
+      var openChapters = (course.chapters || []).filter(function (ch) { return !ch.comingSoon; });
+      var mins = Academy.courseDuration(course);
+      var cp = Academy.courseProgress(user.id, course);
+      document.getElementById("statChapters").textContent = String(openChapters.length);
+      document.getElementById("statTime").textContent = mins ? mins + " min" : "—";
+      document.getElementById("statProgress").textContent = cp.percent + "%";
+    }
+
+    function setChapterImagePreview() {
+      var box = document.getElementById("cImagePreview");
+      if (pendingChapterImage) {
+        box.innerHTML = '<img class="chapter-icon" src="' + pendingChapterImage.replace(/"/g, "") + '" alt="" />';
+      } else {
+        box.innerHTML = '<span class="muted" style="font-size:0.85rem;">Aperçu icône 28×28</span>';
+      }
+    }
+
+    function sectionPreviewHtml(ch) {
+      var sections = ch.sections || [];
+      if (!sections.length) return "";
+      var prog = Academy.ensureChapterProgress(user.id, ch.id);
+      var hasVideo = !!(ch.videoUrl && String(ch.videoUrl).trim());
+      var doneSec = 0;
+      var items = sections.map(function (s, i) {
+        var letter = Academy.sectionLetter(i);
+        var done = Academy.isSectionComplete(user.id, ch, i);
+        if (done) doneSec += 1;
+        var status = done ? "done" : "todo";
+        return '<li class="chapter-sec-item is-' + status + '">' +
+          '<span class="chapter-sec-mark">' + (done ? "✓" : letter) + "</span>" +
+          "<span>" + s.title + "</span>" +
+        "</li>";
+      }).join("");
+      var videoDone = !hasVideo || prog.videoSeen;
+      var quizDone = !!(ch.quiz && ch.quiz.length && Academy.chapterProgress(user.id, ch.id).quizPassed);
+      var total = (hasVideo ? 1 : 0) + sections.length + (ch.quiz && ch.quiz.length ? 1 : 0);
+      var doneUnits = (hasVideo && videoDone ? 1 : 0) + doneSec + (quizDone ? 1 : 0);
+      var pct = total ? Math.round((doneUnits / total) * 100) : 0;
+
+      return (
+        '<div class="chapter-collapse">' +
+          '<button type="button" class="chapter-collapse-toggle" data-collapse-toggle>' +
+            '<span class="nav-arrow" aria-hidden="true"></span>' +
+            "<span>Sous-chapitres &amp; avancement <em>(" + doneSec + "/" + sections.length + " · " + pct + "%)</em></span>" +
+          "</button>" +
+          '<div class="chapter-collapse-body">' +
+            '<ul class="chapter-sec-list">' +
+              (hasVideo
+                ? '<li class="chapter-sec-item is-' + (videoDone ? "done" : "todo") + '">' +
+                    '<span class="chapter-sec-mark">' + (videoDone ? "✓" : "▶") + "</span><span>Vidéo</span></li>"
+                : "") +
+              items +
+              (ch.quiz && ch.quiz.length
+                ? '<li class="chapter-sec-item is-' + (quizDone ? "done" : "todo") + '">' +
+                    '<span class="chapter-sec-mark">' + (quizDone ? "✓" : "?") + "</span><span>Quiz final</span></li>"
+                : "") +
+            "</ul>" +
+            '<div class="lesson-advance-bar chapter-mini-bar"><i style="width:' + pct + '%"></i></div>' +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+    function renderChapters() {
+      course = Academy.getCourse(courseId);
+      list.innerHTML = "";
+      var openChapters = (course.chapters || []).filter(function (ch) { return !ch.comingSoon; });
+      var soon = (course.chapters || []).filter(function (ch) { return ch.comingSoon; });
+
+      openChapters.forEach(function (ch, i) {
+        var p = Academy.chapterProgress(user.id, ch.id);
+        var hasVideo = !!(ch.videoUrl && String(ch.videoUrl).trim());
+        var captureCount = Academy.flattenSectionSteps(ch.sections || []).filter(function (s) { return s.image; }).length;
+        var secCount = (ch.sections || []).length;
+        var iconHtml = ch.image
+          ? '<img class="chapter-icon" src="' + String(ch.image).replace(/"/g, "") + '" alt="" />'
+          : '<span class="chapter-icon chapter-icon--fallback" aria-hidden="true">' + (ch.id || String(i + 1)).slice(0, 3) + "</span>";
+        var card = document.createElement("article");
+        card.className = "aws-course-card" + (p.quizPassed ? " is-done" : "");
+        card.innerHTML =
+          '<div class="aws-course-top">' +
+            '<div class="aws-idx">' + (ch.id || String(i + 1)) + "</div>" +
+            '<div class="aws-main">' +
+              '<h3 class="chapter-title-row">' + iconHtml + "<span>" + ch.title + "</span></h3>" +
+              "<p>" + (ch.purpose || "") + "</p>" +
+            "</div>" +
+            '<div class="aws-side">' +
+              "<strong>" + (ch.duration || "—") + "</strong>" +
+              "<span>" + p.percent + "%</span>" +
+            "</div>" +
+          "</div>" +
+          sectionPreviewHtml(ch) +
+          '<div class="aws-course-foot">' +
+            '<div class="aws-tags">' +
+              '<span class="badge">' + (ch.level || "Chapitre") + "</span>" +
+              (secCount
+                ? '<span class="badge">' + secCount + " sous-chapitre" + (secCount !== 1 ? "s" : "") + "</span>"
+                : "") +
+              (hasVideo
+                ? '<span class="badge" style="background:rgba(61,220,151,0.15);color:var(--ok);">Vidéo</span>'
+                : '<span class="badge warn">Sans vidéo</span>') +
+              (captureCount
+                ? '<span class="badge">' + captureCount + " capture(s)</span>"
+                : "") +
+              '<span class="badge warn">Quiz · ≥ ' + (ch.passPercent != null ? ch.passPercent : pass) + "%</span>" +
+              (p.quizPassed ? '<span class="badge" style="background:rgba(61,220,151,0.15);color:var(--ok);">Validé</span>' : "") +
+            "</div>" +
+            '<div class="aws-course-actions">' +
+              '<a class="btn btn-primary btn-sm" href="chapitre.html?id=' + encodeURIComponent(ch.id) + '">Ouvrir</a>' +
+              (isEditor
+                ? '<button type="button" class="btn btn-outline btn-sm" data-edit-chapter="' + ch.id + '">Modifier</button>'
+                : "") +
+            "</div>" +
+          "</div>";
+        list.appendChild(card);
+      });
+
+      soon.forEach(function (ch) {
+        var row = document.createElement("div");
+        row.className = "aws-course-card is-soon";
+        row.innerHTML =
+          '<div class="aws-course-top"><div class="aws-idx">··</div><div class="aws-main"><h3>' +
+          ch.title +
+          "</h3><p>Bientôt disponible</p></div><div class='aws-side'><strong>À venir</strong></div></div>";
+        list.appendChild(row);
+      });
+
+      if (!openChapters.length && !soon.length) {
+        list.innerHTML = '<p class="muted">Aucun chapitre. Admin : cliquez sur « Ajouter un chapitre » (illimité).</p>';
+      }
+
+      list.querySelectorAll("[data-edit-chapter]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          openChapterEditor(btn.getAttribute("data-edit-chapter"));
+        });
+      });
+
+      list.querySelectorAll("[data-collapse-toggle]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var wrap = btn.closest(".chapter-collapse");
+          if (wrap) wrap.classList.toggle("is-open");
+        });
+      });
+      // Ouvrir par défaut le premier chapitre non terminé
+      var firstOpen = list.querySelector(".aws-course-card:not(.is-done) .chapter-collapse");
+      if (firstOpen) firstOpen.classList.add("is-open");
+
+      refreshStats();
+    }
+
+    function emptySection() {
+      return { title: "", note: "", example: "", steps: [{ text: "", image: "", imageZoom: 1 }] };
+    }
+
+    function renderSectionsEditor() {
+      var box = document.getElementById("sectionsEditor");
+      box.innerHTML = "";
+      if (!editSections.length) {
+        box.innerHTML = '<p class="muted" style="font-size:0.85rem;">Aucun sous-chapitre — ajoutez A, B, C…</p>';
+      }
+      editSections.forEach(function (sec, si) {
+        var letter = Academy.sectionLetter(si);
+        var block = document.createElement("div");
+        block.className = "section-editor";
+        block.setAttribute("data-section", String(si));
+
+        var stepsHtml = "";
+        (sec.steps || []).forEach(function (step, ti) {
+          var preview = step.image
+            ? '<img class="step-capture-thumb" src="' + String(step.image).replace(/"/g, "") + '" alt="" style="transform:scale(' + (step.imageZoom != null ? step.imageZoom : 1) + ')" />'
+            : '<div class="step-capture-empty">Pas de capture</div>';
+          stepsHtml +=
+            '<div class="editor-row step-editor-row" data-sec="' + si + '" data-step="' + ti + '">' +
+              '<input data-step-text placeholder="Étape (ex. Ouvrir GSMAG.)" value="' + escapeAttr(step.text || "") + '" />' +
+              '<div class="step-capture-edit">' + preview +
+                '<label class="muted" style="font-size:0.8rem;font-weight:500;">Capture sous l’étape' +
+                  '<input type="file" accept="image/*" data-step-file="' + si + "-" + ti + '" />' +
+                "</label>" +
+                '<input data-step-image-url placeholder="ou URL image" value="' +
+                  (step.image && String(step.image).indexOf("data:") !== 0 ? escapeAttr(step.image) : "") + '" />' +
+                (step.image
+                  ? '<label class="muted" style="font-size:0.8rem;font-weight:500;">Zoom <span data-zoom-lbl="' + si + "-" + ti + '">' +
+                      Math.round((step.imageZoom != null ? step.imageZoom : 1) * 100) + "%</span>" +
+                      '<input type="range" min="50" max="200" step="5" value="' +
+                      Math.round((step.imageZoom != null ? step.imageZoom : 1) * 100) +
+                      '" data-step-zoom="' + si + "-" + ti + '" /></label>' +
+                      '<button type="button" class="btn btn-ghost btn-sm" data-clear-img="' + si + "-" + ti + '">Retirer capture</button>'
+                  : "") +
+              "</div>" +
+              '<button type="button" class="btn btn-ghost btn-sm" data-rm-step="' + si + "-" + ti + '">Retirer l’étape</button>' +
+            "</div>";
+        });
+
+        block.innerHTML =
+          '<div class="section-editor-head">' +
+            '<span class="subchapter-letter">' + letter + "</span>" +
+            '<input data-sec-title placeholder="Titre du sous-chapitre (ex. Créer une catégorie de produits)" value="' + escapeAttr(sec.title || "") + '" />' +
+            '<button type="button" class="btn btn-ghost btn-sm" data-rm-section="' + si + '">Retirer</button>' +
+          "</div>" +
+          '<label class="muted" style="font-size:0.82rem;font-weight:500;display:grid;gap:0.25rem;">Exemple (optionnel)' +
+            '<textarea data-sec-example rows="2" placeholder="Code : ART001 · …">' + escapeHtml(sec.example || "") + "</textarea>" +
+          "</label>" +
+          '<label class="muted" style="font-size:0.82rem;font-weight:500;display:grid;gap:0.25rem;">Note / résumé (optionnel)' +
+            '<textarea data-sec-note rows="2" placeholder="La catégorie créée pourra ensuite…">' + escapeHtml(sec.note || "") + "</textarea>" +
+          "</label>" +
+          '<div class="section-steps-head">' +
+            "<strong>Étapes du sous-chapitre " + letter + "</strong>" +
+            '<button type="button" class="btn btn-outline btn-sm" data-add-step="' + si + '">+ Étape</button>' +
+          "</div>" +
+          '<div class="section-steps">' + stepsHtml + "</div>";
+
+        box.appendChild(block);
+      });
+
+      box.querySelectorAll("[data-rm-section]").forEach(function (b) {
+        b.onclick = function () {
+          syncSectionsFromDom();
+          editSections.splice(Number(b.getAttribute("data-rm-section")), 1);
+          renderSectionsEditor();
+        };
+      });
+      box.querySelectorAll("[data-add-step]").forEach(function (b) {
+        b.onclick = function () {
+          syncSectionsFromDom();
+          var si = Number(b.getAttribute("data-add-step"));
+          if (!editSections[si].steps) editSections[si].steps = [];
+          editSections[si].steps.push({ text: "", image: "", imageZoom: 1 });
+          renderSectionsEditor();
+        };
+      });
+      box.querySelectorAll("[data-rm-step]").forEach(function (b) {
+        b.onclick = function () {
+          syncSectionsFromDom();
+          var parts = b.getAttribute("data-rm-step").split("-");
+          var si = Number(parts[0]);
+          var ti = Number(parts[1]);
+          if (editSections[si] && editSections[si].steps) editSections[si].steps.splice(ti, 1);
+          renderSectionsEditor();
+        };
+      });
+      box.querySelectorAll("[data-clear-img]").forEach(function (b) {
+        b.onclick = function () {
+          syncSectionsFromDom();
+          var parts = b.getAttribute("data-clear-img").split("-");
+          var si = Number(parts[0]);
+          var ti = Number(parts[1]);
+          if (editSections[si] && editSections[si].steps[ti]) {
+            editSections[si].steps[ti].image = "";
+            editSections[si].steps[ti].imageZoom = 1;
+          }
+          renderSectionsEditor();
+        };
+      });
+      box.querySelectorAll("[data-step-zoom]").forEach(function (input) {
+        input.oninput = function () {
+          var parts = input.getAttribute("data-step-zoom").split("-");
+          var si = Number(parts[0]);
+          var ti = Number(parts[1]);
+          var z = Number(input.value) / 100;
+          if (editSections[si] && editSections[si].steps[ti]) editSections[si].steps[ti].imageZoom = z;
+          var lbl = box.querySelector('[data-zoom-lbl="' + si + "-" + ti + '"]');
+          if (lbl) lbl.textContent = input.value + "%";
+          var thumb = input.closest(".editor-row").querySelector(".step-capture-thumb");
+          if (thumb) thumb.style.transform = "scale(" + z + ")";
+        };
+      });
+      box.querySelectorAll("[data-step-file]").forEach(function (input) {
+        input.onchange = function () {
+          var parts = input.getAttribute("data-step-file").split("-");
+          var si = Number(parts[0]);
+          var ti = Number(parts[1]);
+          var file = input.files && input.files[0];
+          if (!file) return;
+          syncSectionsFromDom();
+          Academy.readImageFile(file, 1200).then(function (dataUrl) {
+            if (!editSections[si].steps[ti]) return;
+            editSections[si].steps[ti].image = dataUrl;
+            if (editSections[si].steps[ti].imageZoom == null) editSections[si].steps[ti].imageZoom = 1;
+            renderSectionsEditor();
+          });
+        };
+      });
+      box.querySelectorAll("[data-step-image-url]").forEach(function (input) {
+        input.onchange = function () {
+          syncSectionsFromDom();
+          var row = input.closest("[data-sec]");
+          if (!row) return;
+          var si = Number(row.getAttribute("data-sec"));
+          var ti = Number(row.getAttribute("data-step"));
+          if (editSections[si] && editSections[si].steps[ti]) {
+            editSections[si].steps[ti].image = input.value.trim();
+          }
+          renderSectionsEditor();
+        };
+      });
+    }
+
+    function renderQuizEditor() {
+      var box = document.getElementById("quizEditor");
+      box.innerHTML = "";
+      if (!editQuiz.length) {
+        box.innerHTML = '<p class="muted" style="font-size:0.85rem;">Aucune question — optionnel mais recommandé.</p>';
+      }
+      editQuiz.forEach(function (q, i) {
+        var opts = q.options || ["", "", ""];
+        while (opts.length < 3) opts.push("");
+        var row = document.createElement("div");
+        row.className = "editor-row quiz-row";
+        row.innerHTML =
+          "<strong>Q" + (i + 1) + "</strong>" +
+          '<input data-q-text placeholder="Question" value="' + escapeAttr(q.q || "") + '" />' +
+          '<input data-q-opt="0" placeholder="Option A" value="' + escapeAttr(opts[0]) + '" />' +
+          '<input data-q-opt="1" placeholder="Option B" value="' + escapeAttr(opts[1]) + '" />' +
+          '<input data-q-opt="2" placeholder="Option C" value="' + escapeAttr(opts[2]) + '" />' +
+          '<label class="muted" style="font-weight:500;">Bonne réponse ' +
+            '<select data-q-answer>' +
+              '<option value="0"' + (Number(q.answer) === 0 ? " selected" : "") + ">A</option>" +
+              '<option value="1"' + (Number(q.answer) === 1 ? " selected" : "") + ">B</option>" +
+              '<option value="2"' + (Number(q.answer) === 2 ? " selected" : "") + ">C</option>" +
+            "</select></label>" +
+          '<button type="button" class="btn btn-ghost btn-sm" data-rm-q="' + i + '">Retirer</button>';
+        box.appendChild(row);
+      });
+      box.querySelectorAll("[data-rm-q]").forEach(function (b) {
+        b.onclick = function () {
+          syncQuizFromDom();
+          editQuiz.splice(Number(b.getAttribute("data-rm-q")), 1);
+          renderQuizEditor();
+        };
+      });
+    }
+
+    function escapeAttr(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    }
+
+    function syncSectionsFromDom() {
+      var blocks = document.querySelectorAll("#sectionsEditor .section-editor");
+      var next = [];
+      blocks.forEach(function (block, si) {
+        var steps = [];
+        block.querySelectorAll(".step-editor-row").forEach(function (row, ti) {
+          var urlInput = row.querySelector("[data-step-image-url]");
+          var urlVal = urlInput ? urlInput.value.trim() : "";
+          var prev = (editSections[si] && editSections[si].steps && editSections[si].steps[ti]) || {};
+          var zEl = row.querySelector("[data-step-zoom]");
+          steps.push({
+            text: (row.querySelector("[data-step-text]") || {}).value || "",
+            image: urlVal || prev.image || "",
+            imageZoom: zEl ? Number(zEl.value) / 100 : (prev.imageZoom != null ? prev.imageZoom : 1),
+          });
+        });
+        next.push({
+          title: (block.querySelector("[data-sec-title]") || {}).value || "",
+          example: (block.querySelector("[data-sec-example]") || {}).value || "",
+          note: (block.querySelector("[data-sec-note]") || {}).value || "",
+          steps: steps,
+        });
+      });
+      editSections = next;
+    }
+    function syncQuizFromDom() {
+      var rows = document.querySelectorAll("#quizEditor .quiz-row");
+      editQuiz = [];
+      rows.forEach(function (row) {
+        editQuiz.push({
+          q: (row.querySelector("[data-q-text]") || {}).value || "",
+          options: [
+            (row.querySelector('[data-q-opt="0"]') || {}).value || "",
+            (row.querySelector('[data-q-opt="1"]') || {}).value || "",
+            (row.querySelector('[data-q-opt="2"]') || {}).value || "",
+          ],
+          answer: Number((row.querySelector("[data-q-answer]") || {}).value || 0),
+        });
+      });
+    }
+
+    function openChapterEditor(chapterId) {
+      var ch = chapterId ? Academy.getChapter(chapterId) : null;
+      document.getElementById("chapterModalTitle").textContent = ch ? "Modifier le chapitre" : "Nouveau chapitre";
+      document.getElementById("btnDeleteChapter").style.display = ch ? "" : "none";
+      document.getElementById("cId").value = ch ? ch.id : "";
+      document.getElementById("cCode").value = ch ? ch.id : "";
+      document.getElementById("cTitle").value = ch ? ch.title : "";
+      document.getElementById("cDuration").value = ch ? ch.duration || "20 min" : "20 min";
+      document.getElementById("cLevel").value = ch ? ch.level || "Débutant" : "Débutant";
+      document.getElementById("cPurpose").value = ch ? ch.purpose || "" : "Cette rubrique permet de :";
+      document.getElementById("cVideo").value = ch ? ch.videoUrl || "" : "";
+      document.getElementById("cImageUrl").value = ch && ch.image && String(ch.image).indexOf("data:") !== 0 ? ch.image : "";
+      document.getElementById("cImageFile").value = "";
+      pendingChapterImage = ch ? ch.image || "" : "";
+      setChapterImagePreview();
+      document.getElementById("cPass").value = ch && ch.passPercent != null ? ch.passPercent : pass;
+      editSections = ch && ch.sections && ch.sections.length
+        ? JSON.parse(JSON.stringify(ch.sections))
+        : [emptySection()];
+      editQuiz = ch && ch.quiz ? JSON.parse(JSON.stringify(ch.quiz)) : [{ q: "", options: ["", "", ""], answer: 0 }];
+      renderSectionsEditor();
+      renderQuizEditor();
+      chapterModal.showModal();
+    }
+
+    document.getElementById("cImageUrl").addEventListener("change", function () {
+      pendingChapterImage = this.value.trim();
+      setChapterImagePreview();
+    });
+    document.getElementById("cImageFile").addEventListener("change", function () {
+      var file = this.files && this.files[0];
+      if (!file) return;
+      Academy.readImageFile(file).then(function (dataUrl) {
+        pendingChapterImage = dataUrl;
+        setChapterImagePreview();
+      });
+    });
+    document.getElementById("cImageClear").onclick = function () {
+      pendingChapterImage = "";
+      document.getElementById("cImageUrl").value = "";
+      document.getElementById("cImageFile").value = "";
+      setChapterImagePreview();
+    };
+
+    document.getElementById("btnAddSection").onclick = function () {
+      syncSectionsFromDom();
+      editSections.push(emptySection());
+      renderSectionsEditor();
+    };
+    document.getElementById("btnAddQuestion").onclick = function () {
+      syncQuizFromDom();
+      editQuiz.push({ q: "", options: ["", "", ""], answer: 0 });
+      renderQuizEditor();
+    };
+    document.getElementById("btnAddChapter").onclick = function () { openChapterEditor(null); };
+    document.getElementById("cCancel").onclick = function () { chapterModal.close(); };
+    document.getElementById("btnDeleteChapter").onclick = function () {
+      var id = document.getElementById("cId").value;
+      if (id && confirm("Supprimer ce chapitre ?")) {
+        Academy.deleteChapter(id);
+        chapterModal.close();
+        renderChapters();
+      }
+    };
+
+    document.getElementById("chapterForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      syncSectionsFromDom();
+      syncQuizFromDom();
+      var id = document.getElementById("cId").value;
+      var code = document.getElementById("cCode").value.trim();
+      var videoUrl = document.getElementById("cVideo").value.trim();
+      var sections = editSections
+        .map(function (sec) {
+          return {
+            title: (sec.title || "").trim(),
+            note: (sec.note || "").trim(),
+            example: (sec.example || "").trim(),
+            steps: (sec.steps || []).filter(function (st) { return (st.text || "").trim() || st.image; })
+              .map(function (st) {
+                return {
+                  text: (st.text || "").trim(),
+                  image: st.image || "",
+                  imageZoom: st.imageZoom != null ? st.imageZoom : 1,
+                };
+              }),
+          };
+        })
+        .filter(function (sec) { return sec.title || sec.steps.length; });
+      if (!videoUrl && !sections.length) {
+        alert("Ajoutez au moins une vidéo ou des sous-chapitres avec étapes.");
+        return;
+      }
+      var payload = {
+        title: document.getElementById("cTitle").value.trim(),
+        duration: document.getElementById("cDuration").value.trim(),
+        level: document.getElementById("cLevel").value.trim(),
+        purpose: document.getElementById("cPurpose").value.trim(),
+        videoUrl: videoUrl,
+        image: pendingChapterImage || document.getElementById("cImageUrl").value.trim(),
+        passPercent: Number(document.getElementById("cPass").value) || 70,
+        comingSoon: false,
+        sections: sections,
+        quiz: editQuiz.filter(function (q) { return q.q.trim(); }),
+      };
+      if (id) {
+        Academy.updateChapter(id, payload);
+        if (code && code !== id) {
+          Academy.deleteChapter(id);
+          Academy.addChapter(courseId, Object.assign({}, payload, { id: code }));
+        }
+      } else {
+        Academy.addChapter(courseId, Object.assign({}, payload, { id: code || undefined }));
+      }
+      chapterModal.close();
+      renderChapters();
+    });
+
+    renderChapters();
+  </script>
+</body>
+</html>

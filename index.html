@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabrine Essadeq · Data & Intelligence Artificielle</title>
+  <meta name="description" content="Portfolio de Sabrine Essadeq, élève ingénieure Data & IA à l'Université Mundiapolis : expériences, projets et compétences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Noto+Naskh+Arabic:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=39">
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a href="#top" class="brand"><img class="brand-mark" src="assets/img/sabrine.jpg" alt="Sabrine Essadeq"><span>Sabrine Essadeq</span></a>
+    <nav class="nav-links site-nav" id="navLinks">
+      <a href="#parcours" data-i18n="nav.parcours">Parcours</a>
+      <a href="#professionnel" data-i18n="nav.pro">Professionnel</a>
+      <a href="#universitaire" data-i18n="nav.uni">Universitaire</a>
+      <a href="#personnel" data-i18n="nav.perso">Personnel</a>
+      <a href="#competences" data-i18n="nav.skills">Compétences</a>
+      <a href="#contact" class="nav-cta" data-i18n="nav.contact">Me contacter</a>
+    </nav>
+    <div class="langs" id="langs">
+      <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="ar">عر</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+    <span class="progress" id="progress"></span>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-text reveal">
+          <p class="eyebrow"><span class="dot"></span><span data-i18n="hero.badge">Disponible pour un stage de fin d'études (PFE)</span></p>
+          <h1 data-i18n-html="hero.title">Sabrine <span class="hl">Essadeq</span></h1>
+          <p class="lead" data-i18n-html="hero.lead">Étudiante en ingénierie informatique spécialisée en Data et intelligence artificielle. Expérimentée en data engineering, en analytics conversationnelle (LLM, Text-to-SQL, RAG) et en développement d'applications data. Capable de concevoir des pipelines ETL, d'interroger des bases de données et de restituer des analyses métier. À la recherche d'un stage PFE en Data afin d'approfondir mes compétences et contribuer à des projets d'analyse et d'IA à forte valeur ajoutée.</p>
+          <div class="hero-actions">
+            <a href="#professionnel" class="btn btn-primary" data-i18n="hero.work">Voir mes réalisations</a>
+            <a href="assets/CV_Sabrine_Essadeq.pdf" class="btn btn-ghost" download data-i18n="hero.cv">Télécharger mon CV</a>
+          </div>
+          <div class="hero-social">
+            <a href="https://www.linkedin.com/in/sabrine-essadeq-5aa1a62a3" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/sab12sab" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:essadeqsabrine@gmail.com">essadeqsabrine@gmail.com</a>
+          </div>
+        </div>
+        <figure class="hero-portrait reveal">
+          <img src="assets/img/sabrine.jpg" alt="Sabrine Essadeq">
+        </figure>
+      </div>
+      <div class="wrap stats reveal">
+        <div class="stat"><b data-count="4">0</b><span data-i18n="stat.exp">expériences en entreprise</span></div>
+        <div class="stat"><b data-count="8">0</b><span data-i18n="stat.damane">réalisations livrées chez Damane Cash</span></div>
+        <div class="stat"><b data-count="30" data-suffix="+">0</b><span data-i18n="stat.projects">projets académiques et personnels</span></div>
+        <div class="stat"><b data-count="84">0</b><span data-i18n="stat.tests">tests automatisés sur Marsa Insight AI</span></div>
+      </div>
+    </section>
+
+    <!-- A PROPOS -->
+    <section class="section about" id="apropos">
+      <div class="wrap">
+        <div class="spread reveal">
+          <p class="kicker" data-i18n="about.kicker">À propos</p>
+          <h2 data-i18n="about.title">Entre la donnée, le métier et le produit.</h2>
+          <div class="about-text">
+            <p data-i18n="about.p1">Avant d'écrire la première ligne, je regarde qui fera le geste, où ça bloque, et ce qui doit rester vérifiable. L'écran reste simple. Le contrôle, lui, ne se relâche pas.</p>
+            <p data-i18n="about.p2">Mon parcours combine l'ingénierie des données (ETL, SQL, modélisation), le développement d'applications (API, interfaces web) et l'IA appliquée (RAG, agents, text-to-SQL, machine learning), avec une attention particulière à la sécurité et à la qualité : tests, contrôle d'accès, traçabilité.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARCOURS -->
+    <section class="section" id="parcours">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n="path.kicker">Parcours professionnel</p>
+          <h2 data-i18n="path.title">Expériences</h2>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section class="section projects" id="projets">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n="work.kicker">Projets</p>
+          <h2 data-i18n="work.title">Ce que j'ai réalisé</h2>
+        </div>
+      </div>
+
+      <div class="chapter chapter-ink" id="professionnel">
+        <div class="wrap">
+          <div class="group-head reveal">
+            <p class="kicker" data-i18n="pro.kicker">En entreprise</p>
+            <h3 data-i18n="pro.title">Professionnel</h3>
+            <p data-i18n="pro.sub">Stages et missions en entreprise.</p>
+          </div>
+          <div class="subsection reveal" id="damane">
+            <div class="subsection-head">
+              <h4>Damane Cash</h4>
+              <p data-i18n="damane.sub">Filiale de Bank of Africa · stage de 6 mois · mars – août 2026</p>
+            </div>
+            <div class="grid" id="gridDamane"></div>
+          </div>
+          <div class="subsection reveal subsection-gap" id="essanet">
+            <div class="subsection-head">
+              <h4>Essanet Maroc</h4>
+              <p data-i18n="essanet.sub">Éditeur de logiciels de gestion · étés 2023 et 2024</p>
+            </div>
+            <div class="grid" id="gridEssanet"></div>
+          </div>
+          <div class="subsection reveal subsection-gap" id="marsa">
+            <div class="subsection-head">
+              <h4>Marsa Maroc</h4>
+              <p data-i18n="marsa.sub">Direction des Systèmes d'Information · stage de 1 mois et demi · été 2026</p>
+            </div>
+            <div class="grid" id="gridMarsa"></div>
+          </div>
+          <div class="subsection reveal subsection-gap" id="websuccess">
+            <div class="subsection-head">
+              <h4>Web Success</h4>
+              <p data-i18n="web.sub">Agence web · stage de 2 mois · juillet – août 2025</p>
+            </div>
+            <div class="grid" id="gridWeb"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter chapter-uni" id="universitaire">
+        <div class="wrap">
+          <div class="group-head reveal">
+            <p class="kicker" data-i18n="uni.kicker">À Mundiapolis</p>
+            <h3 data-i18n="uni.title">Projets universitaires</h3>
+            <p data-i18n="uni.sub">Cours et projets à l'Université Mundiapolis.</p>
+          </div>
+          <div class="grid" id="gridUni"></div>
+        </div>
+      </div>
+
+      <div class="chapter chapter-sand" id="personnel">
+        <div class="wrap">
+          <div class="group-head reveal">
+            <p class="kicker" data-i18n="perso.kicker">De mon côté</p>
+            <h3 data-i18n="perso.title">Mes projets personnels</h3>
+            <p data-i18n="perso.sub">Applications et outils que j'ai construits de mon côté.</p>
+          </div>
+          <div class="grid" id="gridPerso"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETENCES -->
+    <section class="section alt" id="competences">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker" data-i18n="skills.kicker">Boîte à outils</p>
+          <h2 data-i18n="skills.title">Compétences</h2>
+        </div>
+        <div class="skills" id="skills"></div>
+      </div>
+    </section>
+
+    <!-- FORMATION -->
+    <section class="section" id="formation">
+      <div class="wrap edu-grid">
+        <div class="reveal">
+          <p class="kicker" data-i18n="edu.kicker">Formation</p>
+          <h2 data-i18n="edu.title">Études et certifications</h2>
+        </div>
+        <div class="edu-list reveal">
+          <div class="edu-item">
+            <span class="edu-date">2024 – 2027</span>
+            <div><h3 data-i18n="edu.cycle">Cycle ingénieur, Data &amp; Intelligence Artificielle</h3><p data-i18n-html="edu.cyclep">Université Mundiapolis, Casablanca · 5<sup>e</sup> année</p></div>
+          </div>
+          <div class="edu-item">
+            <span class="edu-date">2022 – 2024</span>
+            <div><h3 data-i18n="edu.prepa">Classes préparatoires intégrées</h3><p data-i18n="edu.prepap">Université Mundiapolis, Casablanca · 2 ans</p></div>
+          </div>
+          <div class="edu-item">
+            <span class="edu-date" data-i18n="edu.yiwud">Sept. 2024</span>
+            <div><h3 data-i18n="edu.yiwu">Voyage d'études, commerce international et e-commerce</h3><p data-i18n="edu.yiwup">Yiwu Industrial &amp; Commercial College, Chine</p></div>
+          </div>
+          <div class="edu-item">
+            <span class="edu-date">2021 – 2022</span>
+            <div><h3 data-i18n="edu.bac">Baccalauréat Sciences Physiques</h3><p>Groupe Scolaire Berrada</p></div>
+          </div>
+          <div class="certs">
+            <div class="cert"><b>AWS Academy</b><span>Cloud Foundations</span></div>
+            <div class="cert"><b>Duolingo English Test</b><span data-i18n="edu.duo">Juillet 2025</span></div>
+            <div class="cert"><b data-i18n="edu.event">Organisation d'événements</b><span data-i18n="edu.eventp">Compétition NXP · Can You Web</span></div>
+            <div class="cert"><b data-i18n="edu.docto">Organisation d'une journée doctorale</b><span data-i18n="edu.doctop">Université Mundiapolis</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-box reveal">
+          <div>
+            <p class="kicker light" data-i18n="contact.kicker">Contact</p>
+            <h2 data-i18n="contact.title">Vous recherchez une stagiaire PFE en Data &amp; IA ?</h2>
+            <p data-i18n="contact.sub">Je serais ravie d'échanger sur vos projets et sur la manière dont je peux y contribuer.</p>
+          </div>
+          <div class="contact-panel">
+            <a href="mailto:essadeqsabrine@gmail.com">essadeqsabrine@gmail.com</a>
+            <a href="https://www.linkedin.com/in/sabrine-essadeq-5aa1a62a3" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/sab12sab" target="_blank" rel="noopener">GitHub</a>
+            <p class="contact-meta" data-i18n-html="contact.meta">Casablanca, Maroc<br>+212 6 21 80 38 75</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© <span id="year"></span> Sabrine Essadeq</div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <article class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Fermer">&times;</button>
+      <div id="modalBody"></div>
+    </article>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox"><img alt=""></div>
+
+  <script src="data.js?v=27"></script>
+  <script src="i18n.js?v=9"></script>
+  <script src="i18n-projects.js"></script>
+  <script src="main.js?v=3"></script>
+</body>
+</html>

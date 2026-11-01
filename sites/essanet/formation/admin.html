@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — ESSANET Academy</title>
+  <script>!function(){try{var t=localStorage.getItem("gsmag-academy-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}}()</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="academy.css" />
+</head>
+<body>
+  <header class="ac-header">
+    <div class="ac-wrap ac-header-inner">
+      <a class="brand" href="admin.html">
+        <img src="../assets/logo-g.png" alt="GSMAG" />
+        <span>ESSANET Academy<small>Administration</small></span>
+      </a>
+      <nav class="ac-nav">
+        <a class="btn btn-outline" href="dashboard.html">Launchpad</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="ac-wrap" style="padding:2rem 0 3rem;">
+    <p class="eyebrow">Pilotage</p>
+    <h1 style="font-family:var(--display); margin:0 0 0.4rem; letter-spacing:-0.03em;">Suivi des formations</h1>
+    <p class="muted" style="margin:0 0 1.5rem;">
+      Avancement des formateurs et clients. L’édition des tuiles / chapitres / vidéos se fait sur le launchpad (compte <strong>admin</strong>).
+    </p>
+
+    <div class="card" style="margin-bottom:1.25rem;">
+      <h3 style="margin-top:0;">Formateurs</h3>
+      <table class="table" id="formateursTable">
+        <thead>
+          <tr>
+            <th>Formateur</th>
+            <th>Progression</th>
+            <th>Détail chapitres</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Tous les apprenants</h3>
+      <table class="table" id="usersTable">
+        <thead>
+          <tr>
+            <th>Utilisateur</th>
+            <th>Rôle</th>
+            <th>Progression</th>
+            <th>Détail</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="academy.js"></script>
+  <script>
+    var user = Academy.requireAuth(["formateur", "admin"]);
+    if (!user) throw new Error("auth");
+
+    function progressCell(u) {
+      var summary = Academy.getProgressSummary(u.id);
+      return (
+        '<div style="min-width:140px;">' + summary.percent + "%</div>" +
+        '<div class="progress-bar"><span style="width:' + summary.percent + '%"></span></div>' +
+        '<div class="muted" style="font-size:0.8rem;margin-top:0.25rem;">' + summary.done + "/" + summary.total + "</div>"
+      );
+    }
+
+    var ft = document.querySelector("#formateursTable tbody");
+    var formateurs = Academy.listUsers().filter(function (u) { return u.role === "formateur"; });
+    if (!formateurs.length) {
+      ft.innerHTML = "<tr><td colspan='3' class='muted'>Aucun formateur.</td></tr>";
+    } else {
+      formateurs.forEach(function (u) {
+        var tr = document.createElement("tr");
+        tr.innerHTML =
+          "<td><strong>" + u.name + "</strong><br /><span class='muted'>" + u.email + "</span></td>" +
+          "<td>" + progressCell(u) + "</td>" +
+          "<td class='muted' style='font-size:0.85rem;'>" + Academy.progressDetailLabel(u.id) + "</td>";
+        ft.appendChild(tr);
+      });
+    }
+
+    var tbody = document.querySelector("#usersTable tbody");
+    Academy.listLearners().forEach(function (u) {
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td><strong>" + u.name + "</strong><br /><span class='muted'>" + u.email + "</span></td>" +
+        "<td><span class='pill " + u.role + "'>" + u.role + "</span></td>" +
+        "<td>" + progressCell(u) + "</td>" +
+        "<td class='muted' style='font-size:0.85rem;'>" + Academy.progressDetailLabel(u.id) + "</td>";
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>

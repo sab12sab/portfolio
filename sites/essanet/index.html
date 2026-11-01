@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GSMAG 2026 — Logiciel de gestion commerciale | ESSANET Maroc</title>
+  <meta name="description" content="GSMAG 2026 : logiciel de gestion commerciale pour le stock, la facturation, les clients et la caisse. Versions Mono, Réseaux, Serveur et Android. ESSANET Maroc — Casablanca." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="#accueil" data-i18n-aria="logoAria" aria-label="GSMAG — Accueil">
+      <img class="logo-mark" src="assets/logo-g.png" alt="GSMAG" width="48" height="48" />
+      <span class="logo-text">GSMAG</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#versions" data-i18n="navVersions">Versions</a>
+      <a href="#fonctions" data-i18n="navFunctions">Fonctions</a>
+      <a href="#telechargements" data-i18n="navDownloads">Téléchargements</a>
+      <a href="formation/" data-i18n="navTraining">Formation</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="lang-btn is-active" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang-btn" data-lang="ar" aria-pressed="false">AR</button>
+      </div>
+      <button type="button" class="btn btn-ghost" data-open-login data-i18n="clientSpace">Espace client</button>
+      <a class="btn btn-primary" href="#telechargements" data-i18n="download">Télécharger</a>
+      <button type="button" class="nav-toggle" data-i18n-aria="menu" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-glow"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-content">
+        <p class="brand-signal">GSMAG</p>
+        <h1 data-i18n="heroTitle">La gestion commerciale qui suit votre rythme</h1>
+        <p class="hero-lead" data-i18n="heroLead">Stock, facturation, clients, caisse — une solution complète pour les entreprises marocaines, du mono-poste au multi-utilisateurs.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="https://essanet.pcscloud.net/TELECHARGER/Ins_GSMAG_DEMO.EXE" data-i18n="tryDemo">Essayer la démo</a>
+          <a class="btn btn-outline btn-lg" href="#versions" data-i18n="seeVersions">Voir les versions</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section versions" id="versions">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="versionsEyebrow">Configurations</p>
+        <h2 data-i18n="versionsTitle">Quatre versions, une même puissance</h2>
+        <p data-i18n="versionsLead">Choisissez l’édition adaptée à votre organisation et à votre matériel.</p>
+      </div>
+      <div class="version-grid">
+        <article class="version-item version-item--fill reveal">
+          <figure>
+            <img src="assets/version-mono.png?v=6" data-i18n-alt="altMono" alt="GSMAG Version Mono — poste de caisse complet" />
+          </figure>
+          <div class="version-body">
+            <h3 data-i18n="monoTitle">Version Mono</h3>
+            <p data-i18n="monoText">Idéale pour un seul poste : gestion simple et efficace du stock, des ventes et de la caisse.</p>
+          </div>
+        </article>
+        <article class="version-item reveal">
+          <figure>
+            <img src="assets/version-reseaux.png?v=2" data-i18n-alt="altNetwork" alt="GSMAG Version Réseaux" />
+          </figure>
+          <div class="version-body">
+            <h3 data-i18n="networkTitle">Version Réseaux</h3>
+            <p data-i18n="networkText">Partagez vos données entre plusieurs postes et coordonnez vos équipes en temps réel.</p>
+          </div>
+        </article>
+        <article class="version-item reveal">
+          <figure>
+            <img src="assets/version-serveur.png?v=2" data-i18n-alt="altServer" alt="GSMAG Version Serveur" />
+          </figure>
+          <div class="version-body">
+            <h3 data-i18n="serverTitle">Version Serveur</h3>
+            <p data-i18n="serverText">Accès simultané multi-utilisateurs avec base SQL client/serveur pour les structures exigeantes.</p>
+          </div>
+        </article>
+        <article class="version-item version-item--fill reveal">
+          <figure>
+            <img src="assets/version-android.png?v=2" data-i18n-alt="altAndroid" alt="GSMAG Version Android tablette" />
+          </figure>
+          <div class="version-body">
+            <h3 data-i18n="androidTitle">Version Android</h3>
+            <p data-i18n="androidText">Interface tactile pour tablettes — mode, retail, force de vente et suivi terrain.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section functions" id="fonctions">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="featuresEyebrow">Fonctionnalités</p>
+        <h2 data-i18n="featuresTitle">Du devis à la facture, tout est couvert</h2>
+        <p data-i18n="featuresLead">GSMAG prend en charge toute la chaîne commerciale avec des indicateurs clés et des tableaux de bord.</p>
+      </div>
+      <ul class="feature-list">
+        <li class="reveal">
+          <span class="feature-num">01</span>
+          <div>
+            <h3 data-i18n="f1Title">Clients & fournisseurs</h3>
+            <p data-i18n="f1Text">Fiches détaillées, historique, suivi des règlements et relances.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="feature-num">02</span>
+          <div>
+            <h3 data-i18n="f2Title">Documents commerciaux</h3>
+            <p data-i18n="f2Text">Devis, bons de commande, bons de livraison, factures et avoirs.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="feature-num">03</span>
+          <div>
+            <h3 data-i18n="f3Title">Stock & produits</h3>
+            <p data-i18n="f3Text">Catégories, familles, PAMP, prix, marges — suivi en temps réel.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="feature-num">04</span>
+          <div>
+            <h3 data-i18n="f4Title">Caisse & règlements</h3>
+            <p data-i18n="f4Text">Encaissements clients et fournisseurs, suivi de caisse au quotidien.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="feature-num">05</span>
+          <div>
+            <h3 data-i18n="f5Title">Statistiques</h3>
+            <p data-i18n="f5Text">Tableaux de bord et indicateurs pour piloter votre activité.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="feature-num">06</span>
+          <div>
+            <h3 data-i18n="f6Title">Multi-sociétés</h3>
+            <p data-i18n="f6Text">Nombre illimité de sociétés dans une même installation.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section downloads" id="telechargements">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="downloadsEyebrow">Téléchargements</p>
+        <h2 data-i18n="downloadsTitle">Installez GSMAG 2026</h2>
+        <p data-i18n="downloadsLead">Démos, versions Windows, packs tablette et modèles Excel prêts à l’emploi.</p>
+      </div>
+
+      <div class="download-spotlight reveal">
+        <div>
+          <p class="tag" data-i18n="newTag">Nouveau</p>
+          <h3 data-i18n="pc2026Title">Version PC Windows 2026</h3>
+          <p data-i18n="pc2026Text">Installation complète GSMAG 2026 pour postes Windows.</p>
+        </div>
+        <a class="btn btn-primary btn-lg" href="https://essanet.pcscloud.net/TELECHARGER/Install_GSMAG2026V400.exe" data-i18n="download">Télécharger</a>
+      </div>
+
+      <div class="download-grid">
+        <a class="download-link reveal" href="https://essanet.pcscloud.net/TELECHARGER/Ins_GSMAG_DEMO.EXE">
+          <span class="dl-label" data-i18n="labelDemo">Démo</span>
+          <strong>VERSION GSMAG-DEMO</strong>
+          <span class="dl-meta">.EXE</span>
+        </a>
+        <a class="download-link reveal" href="https://essanet.pcscloud.net/TELECHARGER/SOHOLA2026_G2.rar">
+          <span class="dl-label" data-i18n="labelPack">Pack</span>
+          <strong>g2 — GSM</strong>
+          <span class="dl-meta">.RAR</span>
+        </a>
+        <a class="download-link reveal" href="https://essanet.pcscloud.net/TELECHARGER/SOHOLA2025_G8.rar">
+          <span class="dl-label" data-i18n="labelTablet">Tablette</span>
+          <strong>g8 — Tablette</strong>
+          <span class="dl-meta">.RAR</span>
+        </a>
+        <a class="download-link reveal" href="https://essanet.pcscloud.net/TELECHARGER/Table%20PRODUIT.XLSX">
+          <span class="dl-label" data-i18n="labelTemplate">Modèle</span>
+          <strong>ARTICLE.XLS</strong>
+          <span class="dl-meta">.XLSX</span>
+        </a>
+        <a class="download-link reveal" href="https://essanet.pcscloud.net/TELECHARGER/Table%20CLIENT.XLSX">
+          <span class="dl-label" data-i18n="labelTemplate">Modèle</span>
+          <strong>CLIENT.XLS</strong>
+          <span class="dl-meta">.XLSX</span>
+        </a>
+        <a class="download-link reveal" href="https://essanet.pcscloud.net/TELECHARGER/Table%20FOURNISSEUR.XLSX">
+          <span class="dl-label" data-i18n="labelTemplate">Modèle</span>
+          <strong>FOURNISSEUR.XLS</strong>
+          <span class="dl-meta">.XLSX</span>
+        </a>
+      </div>
+
+      <div class="tech-strip reveal">
+        <div class="tech-copy">
+          <h3 data-i18n="dbTitle">Base de données SQL portable, gratuite, illimitée</h3>
+          <p data-i18n-html="dbText">Propulsé par HFSQL 2026 Client/Serveur — développé avec WinDev, langage de 5<sup>e</sup> génération.</p>
+          <div class="tech-actions">
+            <a class="btn btn-outline" href="https://download.windev.com/fr/download/packs/HFSQL/2026.awp">HFSQL 2026</a>
+            <a class="btn btn-ghost" href="https://pcsoft.fr/accueilpub/hfsql.htm" target="_blank" rel="noopener" data-i18n="learnMore">En savoir plus</a>
+            <a class="btn btn-ghost" href="https://www.teamviewer.com/fr/download/windows/" target="_blank" rel="noopener">
+              <img src="assets/teamviewer.png" alt="" class="btn-icon" /> <span data-i18n="teamviewer">Assistance TeamViewer</span>
+            </a>
+          </div>
+        </div>
+        <div class="tech-media">
+          <img src="assets/hfsql.jpg" data-i18n-alt="altHfsql" alt="Base de données HFSQL" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="a-propos">
+      <div class="about-layout">
+        <div class="about-copy reveal">
+          <p class="eyebrow">ESSANET Maroc</p>
+          <h2 data-i18n="aboutTitle">Qui sommes-nous&nbsp;?</h2>
+          <p data-i18n="aboutP1">ESSANET Maroc Sarl conçoit et déploie GSMAG, un logiciel de gestion commerciale pensé pour les réalités des entreprises locales — commerce, distribution, retail et force de vente.</p>
+          <p data-i18n="aboutP2">Notre mission : automatiser le stock, la facturation et les règlements pour gagner du temps et réduire les erreurs.</p>
+          <a class="btn btn-primary" href="https://youtube.com/@essadeqmustapha2459" target="_blank" rel="noopener">
+            <img src="assets/youtube.jpg" alt="" class="btn-icon round" /> <span data-i18n="youtube">Chaîne YouTube</span>
+          </a>
+        </div>
+        <figure class="about-visual reveal">
+          <img src="assets/about.jpg" data-i18n-alt="altAbout" alt="Qui sommes-nous — ESSANET Maroc" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section formation" id="formation">
+      <div class="formation-panel reveal">
+        <div>
+          <p class="eyebrow light" data-i18n="trainingEyebrow">Accompagnement</p>
+          <h2 data-i18n="trainingTitle">Stage & formation</h2>
+          <p data-i18n="trainingText">Montez en compétence sur GSMAG avec nos sessions de formation — prise en main, paramétrage et bonnes pratiques métier.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
+          <a class="btn btn-light btn-lg" href="formation/" data-i18n="openAcademy">Espace Formation</a>
+          <a class="btn btn-outline btn-lg" href="#contact" data-i18n="askTraining" style="border-color:rgba(255,255,255,0.35);color:#fff;">Demander une formation</a>
+        </div>
+      </div>
+      <div class="rollup-row reveal">
+        <img src="assets/rollup-1.jpg" data-i18n-alt="altRollup1" alt="Présentation GSMAG — roll-up 1" />
+        <img src="assets/rollup-2.jpg" data-i18n-alt="altRollup2" alt="Présentation GSMAG — roll-up 2" />
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="contactEyebrow">Contact</p>
+        <h2 data-i18n="contactTitle">Parlons de votre projet</h2>
+        <p data-i18n="contactLead">ESSANET Maroc Sarl — Technopark, Casablanca</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <h3 data-i18n="address">Adresse</h3>
+          <p data-i18n-html="addressText">465, Technopark<br />Route Noucer — Casablanca</p>
+        </div>
+        <div class="contact-card reveal">
+          <h3 data-i18n="email">Email</h3>
+          <p><a href="mailto:essanet@essanet.net">essanet@essanet.net</a></p>
+        </div>
+        <div class="contact-card reveal">
+          <h3 data-i18n="phone">Téléphone</h3>
+          <p>
+            <a href="tel:+212669148474">0669 148 474</a><br />
+            <a href="tel:+212669917804">0669 917 804</a><br />
+            <a href="tel:+212522824343">0522 824 343</a><br />
+            <a href="tel:+212522504272">0522 50 42 72</a>
+          </p>
+        </div>
+        <div class="contact-card reveal contact-login">
+          <h3 data-i18n="alreadyClient">Déjà client&nbsp;?</h3>
+          <p data-i18n="secureSpace">Accédez à votre espace sécurisé.</p>
+          <button type="button" class="btn btn-primary" data-open-login data-i18n="login">Se connecter</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img class="logo-mark" src="assets/logo-g.png" alt="GSMAG" width="48" height="48" />
+      <div>
+        <strong>GSMAG</strong>
+        <span data-i18n="byEssanet">par ESSANET Maroc Sarl</span>
+      </div>
+    </div>
+    <p data-i18n="rights">© 2026 ESSANET Maroc Sarl — Tous droits réservés.</p>
+    <a href="https://www.essanet.net" target="_blank" rel="noopener">essanet.net</a>
+  </footer>
+
+  <div class="modal" id="login-modal" hidden>
+    <div class="modal-backdrop" data-close-login></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="login-title">
+      <button type="button" class="modal-close" data-close-login data-i18n-aria="close" aria-label="Fermer">×</button>
+      <h2 id="login-title" data-i18n="clientSpace">Espace client</h2>
+      <p data-i18n="loginLead">Connectez-vous avec vos identifiants ESSANET.</p>
+      <form class="login-form" action="#" method="post">
+        <label>
+          <span data-i18n="loginField">Login</span>
+          <input type="text" name="login" autocomplete="username" required />
+        </label>
+        <label>
+          <span data-i18n="passwordField">Mot de passe</span>
+          <input type="password" name="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit" class="btn btn-primary btn-lg" data-i18n="validate">Valider</button>
+      </form>
+      <p class="login-note" data-i18n="loginNote">Le login live reste branché sur votre serveur actuel ; ce formulaire est prêt pour l’intégration.</p>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

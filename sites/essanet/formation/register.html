@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Créer un compte — ESSANET Academy</title>
+  <script>!function(){try{var t=localStorage.getItem("gsmag-academy-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}}()</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="academy.css" />
+</head>
+<body>
+  <header class="ac-header">
+    <div class="ac-wrap ac-header-inner">
+      <a class="brand" href="index.html">
+        <img src="../assets/logo-g.png" alt="GSMAG" />
+        <span>ESSANET Academy<small data-ac-i18n="registerTitle">Inscription</small></span>
+      </a>
+      <nav class="ac-nav">
+        <a class="btn btn-ghost" href="index.html" data-ac-i18n="back">Retour</a>
+        <a class="btn btn-outline" href="login.html" data-ac-i18n="login">Se connecter</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="login-shell">
+    <form class="login-card" id="registerForm">
+      <h1 style="font-family:var(--display); margin:0 0 0.35rem; letter-spacing:-0.03em;" data-ac-i18n="registerTitle">Créer un compte</h1>
+      <p class="muted" style="margin:0 0 1.25rem;" data-ac-i18n="registerSub">Compte client pour suivre la formation GSMAG</p>
+      <p class="error" id="registerError"></p>
+      <label>
+        <span data-ac-i18n="firstName">Prénom</span>
+        <input type="text" id="firstName" required autocomplete="given-name" data-ac-i18n-placeholder="firstName" placeholder="Prénom" />
+      </label>
+      <label>
+        <span data-ac-i18n="lastName">Nom</span>
+        <input type="text" id="lastName" required autocomplete="family-name" data-ac-i18n-placeholder="lastName" placeholder="Nom" />
+      </label>
+      <label>
+        <span data-ac-i18n="email">E-mail</span>
+        <input type="email" id="email" required autocomplete="username" placeholder="vous@exemple.com" />
+      </label>
+      <label>
+        <span data-ac-i18n="password">Mot de passe</span>
+        <input type="password" id="password" required minlength="6" autocomplete="new-password" />
+      </label>
+      <label>
+        <span data-ac-i18n="confirmPassword">Confirmer le mot de passe</span>
+        <input type="password" id="password2" required minlength="6" autocomplete="new-password" />
+      </label>
+      <button class="btn btn-primary" type="submit" style="width:100%; margin-top:0.3rem;" data-ac-i18n="createAccount">Créer mon compte</button>
+      <p class="muted" style="margin:1rem 0 0; font-size:0.9rem; text-align:center;">
+        <span data-ac-i18n="hasAccount">Déjà inscrit ?</span>
+        <a href="login.html" style="color:var(--teal); text-decoration:underline;" data-ac-i18n="login">Se connecter</a>
+      </p>
+    </form>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="academy.js"></script>
+  <script>
+    Academy.requireGuest();
+    Academy.applyLang(Academy.getLang());
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var firstName = document.getElementById("firstName").value.trim();
+      var lastName = document.getElementById("lastName").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var password = document.getElementById("password").value;
+      var password2 = document.getElementById("password2").value;
+      var err = document.getElementById("registerError");
+      if (password !== password2) {
+        err.textContent = "Les mots de passe ne correspondent pas.";
+        return;
+      }
+      var result = Academy.register({ firstName: firstName, lastName: lastName, email: email, password: password });
+      if (!result.ok) {
+        err.textContent = result.error || "Impossible de créer le compte.";
+        return;
+      }
+      location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>

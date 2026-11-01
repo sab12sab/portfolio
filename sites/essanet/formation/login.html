@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connexion — ESSANET Academy</title>
+  <script>!function(){try{var t=localStorage.getItem("gsmag-academy-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}}()</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="academy.css" />
+</head>
+<body>
+  <header class="ac-header">
+    <div class="ac-wrap ac-header-inner">
+      <a class="brand" href="index.html">
+        <img src="../assets/logo-g.png" alt="GSMAG" />
+        <span>ESSANET Academy<small data-ac-i18n="loginTitle">Connexion</small></span>
+      </a>
+      <nav class="ac-nav">
+        <a class="btn btn-ghost" href="index.html" data-ac-i18n="back">Retour</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="login-shell">
+    <form class="login-card" id="loginForm">
+      <h1 style="font-family:var(--display); margin:0 0 0.35rem; letter-spacing:-0.03em;" data-ac-i18n="loginTitle">Se connecter</h1>
+      <p class="muted" style="margin:0 0 1.25rem;" data-ac-i18n="loginSub">Espace client &amp; formateur</p>
+      <p class="error" id="loginError"></p>
+      <label>
+        <span data-ac-i18n="email">E-mail</span>
+        <input type="email" id="email" required autocomplete="username" placeholder="vous@exemple.com" />
+      </label>
+      <label>
+        <span data-ac-i18n="password">Mot de passe</span>
+        <input type="password" id="password" required autocomplete="current-password" />
+      </label>
+      <button class="btn btn-primary" type="submit" style="width:100%; margin-top:0.3rem;" data-ac-i18n="loginSubmit">Entrer</button>
+      <p class="muted" style="margin:1rem 0 0; font-size:0.9rem; text-align:center;">
+        <span data-ac-i18n="noAccount">Pas encore de compte ?</span>
+        <a href="register.html" style="color:var(--teal); text-decoration:underline;" data-ac-i18n="register">Créer un compte</a>
+      </p>
+    </form>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="academy.js"></script>
+  <script>
+    Academy.requireGuest();
+    Academy.applyLang(Academy.getLang());
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = document.getElementById("email").value.trim();
+      var password = document.getElementById("password").value;
+      var result = Academy.login(email, password);
+      if (!result.ok) {
+        document.getElementById("loginError").textContent = result.error || "Identifiants incorrects.";
+        return;
+      }
+      location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>

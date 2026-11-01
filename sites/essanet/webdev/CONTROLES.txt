@@ -1,0 +1,137 @@
+LISTE DES CONTROLES WEBDEV — PAGE_Accueil
+========================================
+Utilise EXACTEMENT ces noms pour coller le code WL_I18N.wl / WL_PAGE_Accueil.wl
+
+HEADER
+------
+IMG_Logo
+LIB_Logo
+Lien_Versions
+Lien_Fonctions
+Lien_Telechargements
+Lien_Formation
+Lien_Contact
+BTN_FR
+BTN_EN
+BTN_AR
+BTN_EspaceClient
+BTN_Telecharger
+
+HERO
+----
+LIB_Brand
+LIB_HeroTitre
+LIB_HeroLead
+BTN_Demo
+BTN_VoirVersions
+
+VERSIONS (ZONE_Versions)
+------------------------
+LIB_VersionsEyebrow
+LIB_VersionsTitre
+LIB_VersionsLead
+IMG_Mono
+LIB_MonoTitre
+LIB_MonoTexte
+IMG_Reseaux
+LIB_ReseauxTitre
+LIB_ReseauxTexte
+IMG_Serveur
+LIB_ServeurTitre
+LIB_ServeurTexte
+IMG_Android
+LIB_AndroidTitre
+LIB_AndroidTexte
+
+FONCTIONS (ZONE_Fonctions)
+--------------------------
+LIB_FonctionsEyebrow
+LIB_FonctionsTitre
+LIB_FonctionsLead
+LIB_F1Titre / LIB_F1Texte
+LIB_F2Titre / LIB_F2Texte
+LIB_F3Titre / LIB_F3Texte
+LIB_F4Titre / LIB_F4Texte
+LIB_F5Titre / LIB_F5Texte
+LIB_F6Titre / LIB_F6Texte
+
+TELECHARGEMENTS (ZONE_Telechargements)
+--------------------------------------
+LIB_DLEyebrow
+LIB_DLTitre
+LIB_DLLead
+LIB_NewTag
+LIB_PC2026Titre
+LIB_PC2026Texte
+BTN_DL_PC2026
+BTN_DL_Demo
+BTN_DL_G2
+BTN_DL_G8
+BTN_DL_Article
+BTN_DL_Client
+BTN_DL_Fournisseur
+BTN_HFSQL
+BTN_TeamViewer
+IMG_HFSQL
+
+A PROPOS
+--------
+LIB_AboutTitre
+LIB_AboutP1
+LIB_AboutP2
+BTN_Youtube
+IMG_About
+
+FORMATION (ZONE_Formation)
+--------------------------
+LIB_FormationEyebrow
+LIB_FormationTitre
+LIB_FormationTexte
+BTN_DemanderFormation
+IMG_Rollup1
+IMG_Rollup2
+
+CONTACT (ZONE_Contact)
+----------------------
+LIB_ContactEyebrow
+LIB_ContactTitre
+LIB_ContactLead
+LIB_AdresseTitre
+LIB_AdresseTexte
+LIB_EmailTitre
+LIB_EmailValeur
+LIB_TelTitre
+LIB_TelValeur
+LIB_DejaClient
+LIB_EspaceSecurise
+BTN_Login
+
+PAGE_Login / POPUP_Login
+------------------------
+SAI_Login
+SAI_MotDePasse
+BTN_ValiderLogin
+LIB_LoginTitre
+LIB_LoginLead
+
+ZONES / CELLULES (pour scroll)
+------------------------------
+ZONE_Versions
+ZONE_Fonctions
+ZONE_Telechargements
+ZONE_Formation
+ZONE_Contact
+
+IMAGES (dossier assets)
+-----------------------
+logo-g.png
+bg-whale.png
+version-mono.png
+version-reseaux.png
+version-serveur.png
+version-android.png
+hfsql.jpg
+about.jpg
+rollup-1.jpg
+rollup-2.jpg
+favicon.png

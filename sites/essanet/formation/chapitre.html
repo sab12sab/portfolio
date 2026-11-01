@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapitre — ESSANET Academy</title>
+  <script>!function(){try{var t=localStorage.getItem("gsmag-academy-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}}()</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="academy.css" />
+</head>
+<body class="lms-shell">
+  <aside class="lms-sidebar" id="lmsSidebar">
+    <a class="lms-brand" href="dashboard.html">
+      <img src="../assets/logo-g.png" alt="GSMAG" />
+      <span>ESSANET Academy</span>
+    </a>
+    <nav class="lms-nav">
+      <a class="lms-nav-link" href="dashboard.html#accueil"><span class="lms-nav-ico" aria-hidden="true">⌂</span> <span data-ac-i18n="navHome">Accueil</span></a>
+      <a class="lms-nav-link" href="dashboard.html#parcours"><span class="lms-nav-ico" aria-hidden="true">◎</span> <span data-ac-i18n="navPath">Mon parcours</span></a>
+      <a class="lms-nav-link is-active" href="dashboard.html#cours"><span class="lms-nav-ico" aria-hidden="true">▣</span> <span data-ac-i18n="navCourses">Mes cours</span></a>
+      <a class="lms-nav-link is-soon" href="#" data-ac-i18n-title="soon" title="Bientôt"><span class="lms-nav-ico" aria-hidden="true">◷</span> <span data-ac-i18n="navCalendar">Calendrier</span></a>
+      <a class="lms-nav-link" href="dashboard.html#certificats"><span class="lms-nav-ico" aria-hidden="true">★</span> <span data-ac-i18n="navCerts">Certificats</span></a>
+      <a class="lms-nav-link lms-nav-admin" href="dashboard.html#utilisateurs" id="navUsers" style="display:none;"><span class="lms-nav-ico" aria-hidden="true">👤</span> <span data-ac-i18n="navUsers">Utilisateurs</span></a>
+      <a class="lms-nav-link" href="dashboard.html#chatbox"><span class="lms-nav-ico" aria-hidden="true">💬</span> <span data-ac-i18n="navChat">Chatbox</span></a>
+    </nav>
+    <div class="lms-sidebar-foot">
+      <div class="lms-user-card">
+        <span class="ac-avatar" id="sideAvatar">A</span>
+        <div class="lms-user-meta">
+          <strong id="sideName">…</strong>
+          <span id="sideRole">Apprenant</span>
+        </div>
+      </div>
+      <p class="lms-version">ESSANET Academy · v1.0</p>
+    </div>
+  </aside>
+
+  <div class="lms-main">
+    <header class="lms-topbar">
+      <button type="button" class="ac-icon-btn lms-burger" id="burgerBtn" aria-label="Menu">☰</button>
+      <p class="lms-breadcrumb"><span>Espace</span> <span>/</span> <a href="#" id="backCourseCrumb" style="color:inherit;text-decoration:none;">Cours</a> <span>/</span> <strong id="crumbPage">Chapitre</strong></p>
+      <div class="lms-topbar-right">
+        <label class="lms-mode-toggle" id="viewModeWrap" style="display:none;">
+          <span>Admin</span>
+          <input type="checkbox" id="viewModeToggle" />
+          <i></i>
+        </label>
+        <nav class="ac-nav lms-top-actions"></nav>
+        <div class="ac-menu lms-notif-menu" data-notif-menu="1">
+          <button type="button" class="ac-icon-btn" id="notifBtn" aria-label="Notifications" title="Notifications">
+            <span aria-hidden="true">🔔</span>
+            <span class="lms-badge" id="notifBadge" style="display:none;">0</span>
+          </button>
+          <div class="ac-menu-panel lms-notif-panel" id="notifPanel" role="menu">
+            <div class="lms-notif-head">
+              <strong>Notifications</strong>
+              <button type="button" class="btn btn-ghost btn-sm" id="notifMarkAll">Tout lu</button>
+            </div>
+            <ul class="lms-notif-list" id="notifList"></ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="lms-body lms-body--full">
+      <div class="lms-content">
+        <main class="layout-course lms-layout-course">
+          <aside class="side-nav">
+            <h2 data-ac-i18n="path">Parcours</h2>
+            <div class="nav-progress-summary" id="navProgressSummary"></div>
+            <nav id="stepNav"></nav>
+          </aside>
+
+          <div class="main-course">
+      <div class="card">
+        <p class="eyebrow" id="courseLabel"></p>
+        <h1 class="chapter-title-row" style="font-family:var(--display); margin:0 0 0.5rem; letter-spacing:-0.03em;">
+          <img id="chapterIcon" class="chapter-icon" alt="" style="display:none;" />
+          <span id="chapterTitleText"></span>
+        </h1>
+        <p class="muted" id="chapterPurpose" style="margin:0;"></p>
+        <p class="muted" style="margin:0.75rem 0 0;font-size:0.9rem;" id="chapterMeta"></p>
+        <div class="lesson-advance" id="lessonAdvance">
+          <div class="lesson-advance-top">
+            <strong id="lessonWhere">—</strong>
+            <span id="lessonPercent">0%</span>
+          </div>
+          <div class="lesson-advance-bar"><i id="lessonBarFill" style="width:0%"></i></div>
+          <p class="muted" id="lessonProgress" style="margin:0.5rem 0 0;font-size:0.82rem;display:flex;flex-wrap:wrap;align-items:center;gap:0.15rem;"></p>
+        </div>
+      </div>
+
+      <div class="card lesson-stage" id="videoCard" style="display:none;">
+        <h3 style="margin-top:0;">Vidéo du chapitre</h3>
+        <div class="video-box" id="videoBox">
+          <div>
+            <strong>Pas de vidéo</strong>
+            <span>Passez directement aux sous-chapitres.</span>
+          </div>
+        </div>
+        <div id="adminVideoEdit" style="display:none;margin-top:0.85rem;">
+          <label class="muted" style="display:grid;gap:0.35rem;font-size:0.9rem;">
+            URL vidéo (optionnel)
+            <input type="url" id="videoUrlInput" placeholder="https://www.youtube.com/embed/…" style="padding:0.65rem 0.8rem;border-radius:10px;border:1px solid var(--line);background:var(--input-bg);color:var(--text);" />
+          </label>
+          <button type="button" class="btn btn-teal" id="saveVideoBtn" style="margin-top:0.55rem;">Enregistrer la vidéo</button>
+        </div>
+        <div class="lesson-actions">
+          <button type="button" class="btn btn-primary" id="btnVideoDone">Suivant →</button>
+        </div>
+      </div>
+
+      <div id="sectionStage" class="lesson-stage" style="display:none;"></div>
+
+      <div class="card lesson-stage" id="quizCard" style="display:none;">
+        <h3 style="margin-top:0;" id="quizTitle">Quiz de fin de chapitre</h3>
+        <p class="muted" id="quizIntro">Cliquez sur une réponse : la correction s’affiche. Si vous validez, vous pourrez passer au chapitre suivant.</p>
+        <form id="quizForm"></form>
+        <p class="error" id="quizMsg"></p>
+        <button class="btn btn-outline" type="button" id="quizRetry" style="display:none;">Réessayer le quiz</button>
+        <div class="quiz-success" id="quizSuccess" style="display:none;">
+          <div class="quiz-success-icon" aria-hidden="true">✓</div>
+          <h3 id="quizCongrats">Félicitations !</h3>
+          <p class="muted" id="quizSuccessMsg">Vous avez validé ce chapitre.</p>
+          <div class="quiz-cert-banner" id="quizCertBanner" style="display:none;">
+            <strong>Certificat obtenu</strong>
+            <p class="muted" id="quizCertMsg"></p>
+            <a class="btn btn-teal btn-sm" href="dashboard.html#certificats" id="quizCertLink">Voir mon certificat →</a>
+          </div>
+          <div class="lesson-actions" style="border-top:0;padding-top:0.5rem;">
+            <button type="button" class="btn btn-primary" id="btnQuizNextChapter">Passer au chapitre suivant →</button>
+            <a class="btn btn-outline" href="#" id="btnQuizBackCourse">Retour au cours</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card lesson-stage" id="doneCard" style="display:none;">
+        <h3 style="margin-top:0;">Chapitre terminé ✓</h3>
+        <p class="muted">Vous avez validé ce chapitre.</p>
+        <div class="lesson-actions">
+          <a class="btn btn-primary" href="#" id="btnNextChapter">Chapitre suivant →</a>
+          <a class="btn btn-outline" href="#" id="btnBackToCourse">Retour au cours</a>
+        </div>
+      </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="academy.js"></script>
+  <script>
+    var user = Academy.requireAuth();
+    if (!user) throw new Error("auth");
+    var isEditor = Academy.isEditor(user);
+    var fresh = Academy.getAllUsers().find(function (u) { return u.id === user.id; });
+    if (fresh) user = Academy.setSession(fresh);
+
+    document.getElementById("sideName").textContent = Academy.userFullName(user);
+    document.getElementById("sideRole").textContent = Academy.roleLabel(user.role);
+    Academy.refreshAvatars(user);
+    if (isEditor) {
+      document.getElementById("navUsers").style.display = "";
+      document.getElementById("viewModeWrap").style.display = "";
+      document.getElementById("viewModeToggle").checked = Academy.getViewMode() === "admin";
+      document.getElementById("viewModeToggle").onchange = function () {
+        Academy.setViewMode(this.checked ? "admin" : "visitor");
+        location.reload();
+      };
+    }
+    document.getElementById("burgerBtn").onclick = function () {
+      document.body.classList.toggle("lms-sidebar-open");
+    };
+    Academy.mountNotifications(user.id);
+    Academy.applyLang(Academy.getLang());
+    document.addEventListener("academy:lang", function () {
+      document.getElementById("sideRole").textContent = Academy.roleLabel(user.role);
+      Academy.mountNotifications(user.id);
+    });
+
+    var params = new URLSearchParams(location.search);
+    var chapterId = params.get("id");
+    var chapter = Academy.getChapter(chapterId);
+    if (!chapter || (!chapter.available && !isEditor)) {
+      location.href = "dashboard.html";
+    }
+
+    var parentCourse = chapter.course;
+
+    var backHref = parentCourse
+      ? "cours.html?id=" + encodeURIComponent(parentCourse.id)
+      : "dashboard.html";
+    document.getElementById("backCourseCrumb").href = backHref;
+    document.getElementById("btnBackToCourse").href = backHref;
+
+    document.getElementById("crumbPage").textContent = chapter.code || chapter.id;
+    document.getElementById("chapterTitleText").textContent = chapter.title;
+    document.getElementById("chapterPurpose").textContent = chapter.purpose || "";
+    document.getElementById("chapterMeta").textContent =
+      (chapter.duration || "—") + " · " + (chapter.level || "Chapitre") +
+      " · Note mini quiz : " + (chapter.passPercent != null ? chapter.passPercent : 70) + "%";
+    document.title = (chapter.code || chapter.id) + " — " + chapter.title;
+
+    if (chapter.image) {
+      var icon = document.getElementById("chapterIcon");
+      icon.src = chapter.image;
+      icon.style.display = "";
+    }
+    if (parentCourse) {
+      document.getElementById("courseLabel").textContent =
+        "Cours " + (parentCourse.number || "") + " · " + parentCourse.title;
+    }
+
+    var hasVideo = !!(chapter.videoUrl && String(chapter.videoUrl).trim());
+    var sections = chapter.sections || [];
+    var viewingStage = null;
+    var sectionsOpenByChapter = {};
+    var chapterOpenById = {};
+    sectionsOpenByChapter[chapter.id] = true;
+    chapterOpenById[chapter.id] = true;
+
+    var courseChapters = (parentCourse && parentCourse.chapters
+      ? parentCourse.chapters
+      : [chapter]
+    ).filter(function (ch) { return !ch.comingSoon; });
+
+    function chapterHref(chId) {
+      return "chapitre.html?id=" + encodeURIComponent(chId);
+    }
+
+    function chapterProgressInfo(chRef) {
+      var full = Academy.getChapter(chRef.id) || chRef;
+      var p = Academy.chapterProgress(user.id, full.id);
+      var secs = full.sections || [];
+      var doneSecs = Academy.countSectionsDone(user.id, full);
+      var progRow = Academy.ensureChapterProgress(user.id, full.id);
+      return {
+        full: full,
+        percent: p.percent,
+        quizPassed: !!p.quizPassed,
+        sections: secs,
+        doneSecs: doneSecs,
+        hasVideo: !!(full.videoUrl && String(full.videoUrl).trim()),
+        videoSeen: !!progRow.videoSeen,
+        complete: !!p.completed || (full.quiz && full.quiz.length ? p.quizPassed : p.percent >= 100),
+      };
+    }
+
+    function hideAllStages() {
+      ["videoCard", "sectionStage", "quizCard", "doneCard"].forEach(function (id) {
+        document.getElementById(id).style.display = "none";
+      });
+    }
+
+    function goNextChapter() {
+      var lesson = Academy.getNextLesson(chapter.id);
+      if (lesson && lesson.href) location.href = lesson.href;
+      else location.href = "dashboard.html";
+    }
+
+    function setupCongratsButtons() {
+      var lesson = Academy.getNextLesson(chapter.id);
+      var btnQuizNext = document.getElementById("btnQuizNextChapter");
+      var btnQuizBack = document.getElementById("btnQuizBackCourse");
+      var btnDoneNext = document.getElementById("btnNextChapter");
+      var backHref = parentCourse
+        ? "cours.html?id=" + encodeURIComponent(parentCourse.id)
+        : "dashboard.html";
+
+      btnQuizBack.href = backHref;
+      btnQuizBack.textContent = "Retour au cours";
+      btnQuizBack.style.display = "";
+
+      btnQuizNext.textContent = lesson.label || "Continuer →";
+      btnQuizNext.onclick = function () {
+        location.href = lesson.href;
+      };
+
+      // Évite 2 boutons identiques « Retour au cours »
+      if (lesson.type === "course" && lesson.href === backHref) {
+        btnQuizBack.style.display = "none";
+      }
+
+      if (btnDoneNext) {
+        btnDoneNext.textContent = lesson.label || "Continuer →";
+        btnDoneNext.onclick = function (e) {
+          e.preventDefault();
+          location.href = lesson.href;
+        };
+      }
+    }
+
+    function markSectionDone(si) {
+      Academy.completeSection(user.id, chapter, si);
+    }
+
+    function advanceFromSection(si) {
+      markSectionDone(si);
+      // Affiche tout de suite le ✓ + progression (comme la vidéo)
+      viewingStage = { type: "section", index: si };
+      sectionsOpenByChapter[chapter.id] = true;
+      renderNav();
+      updateAdvanceUI();
+      // Surligne brièvement l’item validé dans le parcours
+      var links = document.querySelectorAll("#stepNav .nav-group-body .step-link");
+      if (links[si]) {
+        links[si].classList.add("done", "just-validated");
+      }
+      var isLast = si >= sections.length - 1;
+      setTimeout(function () {
+        if (isLast) {
+          if (chapter.quiz && chapter.quiz.length) showStage({ type: "quiz" });
+          else showStage({ type: "done" });
+        } else {
+          showStage({ type: "section", index: si + 1 });
+        }
+      }, 450);
+    }
+
+    function computeAdvance() {
+      var prog = Academy.ensureChapterProgress(user.id, chapter.id);
+      var cp = Academy.chapterProgress(user.id, chapter.id);
+      var totalUnits = (hasVideo ? 1 : 0) + sections.length + (chapter.quiz && chapter.quiz.length ? 1 : 0);
+      var doneUnits = 0;
+      if (hasVideo && prog.videoSeen) doneUnits += 1;
+      sections.forEach(function (_s, i) {
+        if (Academy.isSectionComplete(user.id, chapter, i)) doneUnits += 1;
+      });
+      if (chapter.quiz && chapter.quiz.length && cp.quizPassed) doneUnits += 1;
+      var percent = totalUnits ? Math.round((doneUnits / totalUnits) * 100) : 0;
+
+      var where = "Début";
+      var stage = viewingStage || Academy.getLessonStage(user.id, chapter);
+      if (stage.type === "video") where = "Vous êtes ici : Vidéo";
+      else if (stage.type === "section") {
+        where = "Vous êtes ici : " + Academy.sectionLetter(stage.index) + ". " + (sections[stage.index].title || "");
+      } else if (stage.type === "quiz") where = "Vous êtes ici : Quiz final";
+      else where = "Chapitre terminé";
+
+      return { percent: percent, where: where, doneUnits: doneUnits, totalUnits: totalUnits, stage: stage, prog: prog, cp: cp };
+    }
+
+    function updateAdvanceUI() {
+      var a = computeAdvance();
+      document.getElementById("lessonWhere").textContent = a.where;
+      document.getElementById("lessonPercent").textContent = a.percent + "%";
+      document.getElementById("lessonBarFill").style.width = a.percent + "%";
+
+      var trail = document.getElementById("lessonProgress");
+      trail.innerHTML = "";
+      function addChip(label, state) {
+        var span = document.createElement("span");
+        span.className = "progress-chip" + (state ? " is-" + state : "");
+        span.textContent = label;
+        trail.appendChild(span);
+        var sep = document.createElement("span");
+        sep.className = "progress-sep";
+        sep.textContent = "→";
+        trail.appendChild(sep);
+      }
+      if (hasVideo) addChip("Vidéo", a.prog.videoSeen ? "done" : (a.stage.type === "video" ? "here" : ""));
+      sections.forEach(function (sec, si) {
+        var letter = Academy.sectionLetter(si);
+        var done = Academy.isSectionComplete(user.id, chapter, si);
+        var here = a.stage.type === "section" && a.stage.index === si;
+        addChip(letter, done ? "done" : (here ? "here" : ""));
+      });
+      if (chapter.quiz && chapter.quiz.length) {
+        addChip("Quiz", a.cp.quizPassed ? "done" : (a.stage.type === "quiz" ? "here" : ""));
+      }
+      if (trail.lastChild && trail.lastChild.classList.contains("progress-sep")) {
+        trail.removeChild(trail.lastChild);
+      }
+    }
+
+    function renderNav() {
+      var nav = document.getElementById("stepNav");
+      nav.innerHTML = "";
+      var a = computeAdvance();
+      var prog = a.prog;
+      var cp = a.cp;
+      var stage = a.stage;
+
+      var courseDone = 0;
+      courseChapters.forEach(function (ch) {
+        if (chapterProgressInfo(ch).complete) courseDone += 1;
+      });
+      document.getElementById("navProgressSummary").textContent =
+        "Cours " + courseDone + " / " + courseChapters.length + " chapitres · " +
+        "ici " + a.doneUnits + "/" + a.totalUnits + " (" + a.percent + "%)";
+
+      function addLink(parent, label, state, onClick) {
+        var el = document.createElement("a");
+        el.href = "#";
+        el.className = "step-link" +
+          (state === "active" ? " active" : "") +
+          (state === "done" ? " done" : "") +
+          (state === "locked" ? " locked" : "");
+        el.textContent = label;
+        if (state !== "locked" || isEditor) {
+          el.onclick = function (e) {
+            e.preventDefault();
+            if (onClick) onClick();
+          };
+        } else {
+          el.onclick = function (e) { e.preventDefault(); };
+        }
+        parent.appendChild(el);
+        return el;
+      }
+
+      courseChapters.forEach(function (chRef) {
+        var info = chapterProgressInfo(chRef);
+        var chFull = info.full;
+        var isCurrent = chFull.id === chapter.id;
+        if (chapterOpenById[chFull.id] == null) chapterOpenById[chFull.id] = isCurrent;
+        if (sectionsOpenByChapter[chFull.id] == null) sectionsOpenByChapter[chFull.id] = isCurrent;
+
+        var chBlock = document.createElement("div");
+        chBlock.className = "nav-chapter" +
+          (isCurrent ? " is-current" : "") +
+          (info.complete ? " is-done" : "") +
+          (chapterOpenById[chFull.id] ? " is-open" : "");
+
+        var chHead = document.createElement("div");
+        chHead.className = "nav-chapter-head";
+
+        var chToggle = document.createElement("button");
+        chToggle.type = "button";
+        chToggle.className = "nav-chapter-toggle";
+        chToggle.setAttribute("aria-expanded", chapterOpenById[chFull.id] ? "true" : "false");
+        chToggle.innerHTML =
+          '<span class="nav-arrow" aria-hidden="true"></span>' +
+          "<span class=\"nav-chapter-title\">" +
+            (chFull.code || chFull.id) + " — " + chFull.title +
+          "</span>" +
+          '<em class="nav-chapter-pct">' + info.percent + "%</em>";
+        chToggle.onclick = function () {
+          chapterOpenById[chFull.id] = !chapterOpenById[chFull.id];
+          renderNav();
+        };
+        chHead.appendChild(chToggle);
+
+        if (!isCurrent) {
+          var openBtn = document.createElement("a");
+          openBtn.href = chapterHref(chFull.id);
+          openBtn.className = "nav-chapter-go";
+          openBtn.textContent = "Ouvrir";
+          chHead.appendChild(openBtn);
+        }
+        chBlock.appendChild(chHead);
+
+        var chBody = document.createElement("div");
+        chBody.className = "nav-chapter-body";
+
+        if (isCurrent) {
+          if (hasVideo || isEditor) {
+            var vState = stage.type === "video" ? "active" : (prog.videoSeen ? "done" : "");
+            addLink(chBody, "Vidéo", vState, function () {
+              showStage({ type: "video" });
+            });
+          }
+
+          if (sections.length) {
+            var doneCount = Academy.countSectionsDone(user.id, chapter);
+            var group = document.createElement("div");
+            group.className = "nav-group" + (sectionsOpenByChapter[chapter.id] ? " is-open" : "");
+
+            var toggle = document.createElement("button");
+            toggle.type = "button";
+            toggle.className = "nav-group-toggle";
+            toggle.innerHTML =
+              '<span class="nav-arrow" aria-hidden="true"></span>' +
+              "<span>Sous-chapitres <em>(" + doneCount + "/" + sections.length + ")</em></span>";
+            toggle.onclick = function () {
+              sectionsOpenByChapter[chapter.id] = !sectionsOpenByChapter[chapter.id];
+              group.classList.toggle("is-open", sectionsOpenByChapter[chapter.id]);
+            };
+            group.appendChild(toggle);
+
+            var list = document.createElement("div");
+            list.className = "nav-group-body";
+            sections.forEach(function (sec, si) {
+              var letter = Academy.sectionLetter(si);
+              var done = Academy.isSectionComplete(user.id, chapter, si);
+              var here = stage.type === "section" && stage.index === si;
+              var state = "";
+              if (done) state = "done";
+              else if (here) state = "active";
+
+              addLink(list, letter + ". " + sec.title, state, function () {
+                showStage({ type: "section", index: si });
+              });
+            });
+            group.appendChild(list);
+            chBody.appendChild(group);
+          }
+
+          if (chapter.quiz && chapter.quiz.length) {
+            var qState = "";
+            if (cp.quizPassed) qState = "done";
+            else if (stage.type === "quiz") qState = "active";
+            addLink(chBody, "Quiz final", qState, function () {
+              showStage({ type: "quiz" });
+            });
+          }
+        } else {
+          if (info.hasVideo) {
+            addLink(
+              chBody,
+              "Vidéo",
+              info.videoSeen ? "done" : "",
+              function () { location.href = chapterHref(chFull.id); }
+            );
+          }
+          if (info.sections.length) {
+            var otherGroup = document.createElement("div");
+            otherGroup.className = "nav-group" + (sectionsOpenByChapter[chFull.id] ? " is-open" : "");
+            var otherToggle = document.createElement("button");
+            otherToggle.type = "button";
+            otherToggle.className = "nav-group-toggle";
+            otherToggle.innerHTML =
+              '<span class="nav-arrow" aria-hidden="true"></span>' +
+              "<span>Sous-chapitres <em>(" + info.doneSecs + "/" + info.sections.length + ")</em></span>";
+            otherToggle.onclick = function () {
+              sectionsOpenByChapter[chFull.id] = !sectionsOpenByChapter[chFull.id];
+              otherGroup.classList.toggle("is-open", sectionsOpenByChapter[chFull.id]);
+            };
+            otherGroup.appendChild(otherToggle);
+            var otherList = document.createElement("div");
+            otherList.className = "nav-group-body";
+            info.sections.forEach(function (sec, si) {
+              var letter = Academy.sectionLetter(si);
+              var done = Academy.isSectionComplete(user.id, chFull, si);
+              addLink(
+                otherList,
+                letter + ". " + sec.title,
+                done ? "done" : "",
+                function () { location.href = chapterHref(chFull.id); }
+              );
+            });
+            otherGroup.appendChild(otherList);
+            chBody.appendChild(otherGroup);
+          }
+          if (chFull.quiz && chFull.quiz.length) {
+            addLink(
+              chBody,
+              "Quiz final",
+              info.quizPassed ? "done" : "",
+              function () { location.href = chapterHref(chFull.id); }
+            );
+          }
+        }
+
+        chBlock.appendChild(chBody);
+        nav.appendChild(chBlock);
+      });
+
+      updateAdvanceUI();
+    }
+
+    function setupVideo() {
+      var box = document.getElementById("videoBox");
+      if (hasVideo) {
+        box.innerHTML =
+          '<iframe src="' + chapter.videoUrl + '" title="Vidéo" style="width:100%;height:100%;border:0;border-radius:14px;" allowfullscreen></iframe>';
+        box.style.padding = "0";
+        box.style.border = "0";
+      } else {
+        box.innerHTML =
+          "<div><strong>Pas de vidéo</strong><span>Cliquez sur Suivant pour les sous-chapitres.</span></div>";
+        box.style.padding = "";
+        box.style.border = "";
+      }
+      document.getElementById("btnVideoDone").textContent = "Suivant →";
+      document.getElementById("btnVideoDone").onclick = function () {
+        Academy.markVideoSeen(user.id, chapter.id);
+        viewingStage = { type: "video" };
+        renderNav();
+        updateAdvanceUI();
+        var vLink = document.querySelector("#stepNav > .step-link");
+        if (vLink) vLink.classList.add("done", "just-validated");
+        setTimeout(function () { showCurrentStage(); }, 450);
+      };
+
+      if (isEditor) {
+        document.getElementById("adminVideoEdit").style.display = "";
+        document.getElementById("videoUrlInput").value = chapter.videoUrl || "";
+        document.getElementById("saveVideoBtn").onclick = function () {
+          var url = document.getElementById("videoUrlInput").value.trim();
+          Academy.updateChapter(chapter.id, { videoUrl: url });
+          chapter = Academy.getChapter(chapter.id);
+          hasVideo = !!(chapter.videoUrl && String(chapter.videoUrl).trim());
+          setupVideo();
+          alert("Vidéo enregistrée.");
+        };
+      }
+    }
+
+    function renderSection(si) {
+      var root = document.getElementById("sectionStage");
+      root.innerHTML = "";
+      root.style.display = "";
+
+      var sec = sections[si];
+      if (!sec) return;
+      var letter = Academy.sectionLetter(si);
+      var keys = Academy.sectionStepKeys(chapter, si);
+      var doneSet = {};
+      (Academy.ensureChapterProgress(user.id, chapter.id).stepsDone || []).forEach(function (k) {
+        doneSet[String(k)] = true;
+      });
+
+      var isLast = si >= sections.length - 1;
+      var nextLabel = isLast
+        ? (chapter.quiz && chapter.quiz.length ? "Suivant : Quiz →" : "Terminer →")
+        : "Suivant : " + Academy.sectionLetter(si + 1) + " →";
+
+      var card = document.createElement("section");
+      card.className = "card subchapter-card";
+
+      var stepsHtml = '<ol class="subchapter-steps">';
+      (sec.steps || []).forEach(function (step, ti) {
+        var flat = Number(keys[ti]);
+        var done = !!doneSet[String(flat)];
+        var zoom = step.imageZoom != null ? step.imageZoom : 1;
+        stepsHtml +=
+          '<li class="subchapter-step' + (done ? " is-done" : "") + '" data-step-key="' + flat + '">' +
+            '<div class="subchapter-step-body">' +
+              '<span class="subchapter-step-num">' + (ti + 1) + "</span>" +
+              "<div>" +
+                "<p>" + (step.text || "") + "</p>" +
+                (step.image
+                  ? '<figure class="step-capture"><img src="' + String(step.image).replace(/"/g, "") +
+                      '" alt="" style="transform:scale(' + zoom + ')" /></figure>'
+                  : "") +
+              "</div>" +
+            "</div>" +
+          "</li>";
+      });
+      stepsHtml += "</ol>";
+
+      var extra = "";
+      if (sec.example) extra += '<div class="subchapter-example"><strong>Exemple</strong><p>' + sec.example + "</p></div>";
+      if (sec.note) extra += '<p class="subchapter-note muted">' + sec.note + "</p>";
+
+      card.innerHTML =
+        '<header class="subchapter-head">' +
+          '<span class="subchapter-letter">' + letter + "</span>" +
+          "<div>" +
+            "<h2>" + letter + ". " + sec.title + "</h2>" +
+            '<p class="muted" style="margin:0.25rem 0 0;font-size:0.88rem;">Sous-chapitre ' + (si + 1) + " / " + sections.length + "</p>" +
+          "</div>" +
+        "</header>" +
+        stepsHtml + extra +
+        '<div class="lesson-actions">' +
+          (si > 0
+            ? '<button type="button" class="btn btn-outline" id="btnPrevSection">← Précédent</button>'
+            : "") +
+          '<button type="button" class="btn btn-primary" id="btnNextSection">' + nextLabel + "</button>" +
+        "</div>";
+
+      root.appendChild(card);
+
+      // Scroll = validation visuelle (optionnel), le bouton Suivant suffit pour avancer
+      if (window.IntersectionObserver) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var key = entry.target.getAttribute("data-step-key");
+            if (key == null) return;
+            Academy.markStep(user.id, chapter.id, key);
+            entry.target.classList.add("is-done");
+            updateAdvanceUI();
+            renderNav();
+          });
+        }, { threshold: 0.4 });
+        card.querySelectorAll(".subchapter-step").forEach(function (el) { obs.observe(el); });
+      }
+
+      document.getElementById("btnNextSection").onclick = function () {
+        advanceFromSection(si);
+      };
+      var prev = document.getElementById("btnPrevSection");
+      if (prev) {
+        prev.onclick = function () {
+          showStage({ type: "section", index: si - 1 });
+        };
+      }
+    }
+
+    function renderQuiz() {
+      document.getElementById("quizCard").style.display = "";
+      var needed = chapter.passPercent != null ? chapter.passPercent : 70;
+      var form = document.getElementById("quizForm");
+      var quizMsg = document.getElementById("quizMsg");
+      var quizRetry = document.getElementById("quizRetry");
+      var quizSuccess = document.getElementById("quizSuccess");
+      var quizIntro = document.getElementById("quizIntro");
+      var quizTitle = document.getElementById("quizTitle");
+      var cp = Academy.chapterProgress(user.id, chapter.id);
+      var answers = new Array(chapter.quiz.length).fill(null);
+      var locked = new Array(chapter.quiz.length).fill(false);
+      var quizFinished = !!cp.quizPassed;
+
+      quizIntro.textContent =
+        "Cliquez sur une réponse pour la correction. Note mini : " + needed + "%.";
+      quizIntro.style.display = "";
+      quizTitle.style.display = "";
+      form.style.display = "";
+      quizSuccess.style.display = "none";
+      quizRetry.style.display = "none";
+      quizMsg.textContent = "";
+      document.getElementById("quizCertBanner").style.display = "none";
+
+      setupCongratsButtons();
+
+      function showCongrats(result) {
+        form.style.display = "none";
+        quizIntro.style.display = "none";
+        quizTitle.style.display = "none";
+        quizRetry.style.display = "none";
+        quizMsg.textContent = "";
+        quizSuccess.style.display = "";
+        setupCongratsButtons();
+        var lesson = Academy.getNextLesson(chapter.id);
+        document.getElementById("quizCongrats").textContent = "Félicitations !";
+        var extra = "";
+        if (lesson.type === "chapter" && lesson.course) {
+          extra = " Vous pouvez passer au cours suivant.";
+        } else if (lesson.type === "chapter") {
+          extra = " Vous pouvez passer au chapitre suivant.";
+        }
+        document.getElementById("quizSuccessMsg").textContent =
+          "Quiz réussi — note " + (result && result.percent != null ? result.percent : cp.quizPercent || 100) +
+          "%. Vous avez validé le chapitre « " + chapter.title + " »." + extra;
+        var certBanner = document.getElementById("quizCertBanner");
+        if (result && result.certificate) {
+          certBanner.style.display = "";
+          document.getElementById("quizCertMsg").textContent =
+            "Module « " + result.certificate.courseTitle + " » terminé — certificat délivré à " +
+            (result.certificate.firstName || "") + " " + (result.certificate.lastName || "") + ".";
+        } else {
+          certBanner.style.display = "none";
+        }
+        renderNav();
+        updateAdvanceUI();
+        quizSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      function finishQuiz() {
+        var result = Academy.submitQuiz(user.id, chapter.id, answers);
+        quizFinished = true;
+        form.querySelectorAll(".quiz-option").forEach(function (btn) { btn.disabled = true; });
+        renderNav();
+        if (result.ok) {
+          showCongrats(result);
+        } else {
+          quizMsg.style.color = "#ff8d8d";
+          quizMsg.textContent =
+            "Note insuffisante : " + result.percent + "% (il faut ≥ " + result.needed + "%). Réessayez.";
+          quizRetry.style.display = "";
+        }
+      }
+
+      function build() {
+        form.innerHTML = "";
+        form.style.display = "";
+        quizSuccess.style.display = "none";
+        chapter.quiz.forEach(function (q, qi) {
+          var box = document.createElement("div");
+          box.className = "quiz-q";
+          var feedback = document.createElement("p");
+          feedback.className = "quiz-feedback";
+          feedback.style.display = "none";
+          var opts = document.createElement("div");
+          opts.className = "quiz-options";
+
+          (q.options || []).forEach(function (choice, ci) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "quiz-option";
+            btn.textContent = choice;
+            btn.setAttribute("data-ci", String(ci));
+            if (locked[qi] || (quizFinished && cp.quizPassed)) {
+              btn.disabled = true;
+              if (ci === Number(q.answer)) btn.classList.add("is-correct");
+              if (answers[qi] === ci && ci !== Number(q.answer)) btn.classList.add("is-wrong");
+            }
+            btn.onclick = function () {
+              if (locked[qi] || quizFinished) return;
+              answers[qi] = ci;
+              locked[qi] = true;
+              var correct = Number(q.answer);
+              var isOk = ci === correct;
+              opts.querySelectorAll(".quiz-option").forEach(function (b) {
+                b.disabled = true;
+                var bci = Number(b.getAttribute("data-ci"));
+                if (bci === correct) b.classList.add("is-correct");
+                if (bci === ci && !isOk) b.classList.add("is-wrong");
+              });
+              feedback.style.display = "";
+              feedback.className = "quiz-feedback " + (isOk ? "is-ok" : "is-bad");
+              feedback.textContent = isOk
+                ? "Correct ✓"
+                : "Incorrect — bonne réponse : « " + (q.options[correct] || "") + " »";
+              if (answers.every(function (x) { return x !== null; })) finishQuiz();
+            };
+            opts.appendChild(btn);
+          });
+
+          var title = document.createElement("p");
+          title.textContent = qi + 1 + ". " + q.q;
+          box.appendChild(title);
+          box.appendChild(opts);
+          box.appendChild(feedback);
+          form.appendChild(box);
+        });
+      }
+
+      quizRetry.onclick = function () {
+        answers = new Array(chapter.quiz.length).fill(null);
+        locked = new Array(chapter.quiz.length).fill(false);
+        quizFinished = false;
+        cp = Academy.chapterProgress(user.id, chapter.id);
+        quizMsg.textContent = "";
+        quizRetry.style.display = "none";
+        quizSuccess.style.display = "none";
+        quizIntro.style.display = "";
+        quizTitle.style.display = "";
+        build();
+      };
+
+      if (cp.quizPassed) {
+        chapter.quiz.forEach(function (q, qi) {
+          answers[qi] = Number(q.answer);
+          locked[qi] = true;
+        });
+        showCongrats({ percent: cp.quizPercent || 100 });
+      } else {
+        build();
+      }
+    }
+
+    function showStage(stage) {
+      viewingStage = stage;
+      hideAllStages();
+      if (stage.type === "video") {
+        document.getElementById("videoCard").style.display = "";
+      } else if (stage.type === "section") {
+        renderSection(stage.index);
+      } else if (stage.type === "quiz") {
+        renderQuiz();
+      } else {
+        document.getElementById("doneCard").style.display = "";
+        setupCongratsButtons();
+      }
+      renderNav();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showCurrentStage() {
+      if (!hasVideo) Academy.markVideoSeen(user.id, chapter.id);
+      showStage(Academy.getLessonStage(user.id, chapter));
+    }
+
+    setupVideo();
+    showCurrentStage();
+  </script>
+</body>
+</html>
