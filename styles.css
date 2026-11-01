@@ -166,6 +166,8 @@ html[dir="rtl"] .hero h1 { direction: ltr; text-align: right; }
 }
 
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.more-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.more-bar[hidden] { display: none; }
 .card { background: #f7f4ef; color: #1c1917; border: 1px solid rgba(255,255,255,.14); border-radius: 22px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; box-shadow: var(--shadow); }
 .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .card .body { border-top: 3px solid transparent; transition: border-color .25s; }

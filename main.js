@@ -103,14 +103,40 @@ function card(raw) {
 
 const PERSO = ["coran", "studio-photo", "golden-spark", "lumen", "pdf-translate", "win2lang"];
 const ESSANET = ["gsmag", "gsmag-web", "essanet-academy"];
+const STEP = 3;
+const visible = {};
+
+function paint(id, items) {
+  const grid = document.getElementById(id);
+  if (!grid) return;
+  const total = items.length;
+  let n = visible[id] == null ? STEP : visible[id];
+  if (n > total) n = total;
+  visible[id] = n;
+  grid.innerHTML = items.slice(0, n).map(card).join("");
+  let bar = grid.parentElement.querySelector(':scope > .more-bar[data-for="' + id + '"]');
+  if (!bar) {
+    bar = document.createElement("div");
+    bar.className = "more-bar";
+    bar.dataset.for = id;
+    grid.after(bar);
+  }
+  if (total <= STEP || n >= total) {
+    bar.hidden = true;
+    bar.innerHTML = "";
+    return;
+  }
+  bar.hidden = false;
+  bar.innerHTML = `<button type="button" class="btn btn-primary" data-more="${id}">${esc(t("more.plus"))}</button><button type="button" class="btn btn-ghost" data-all="${id}">${esc(t("more.all"))}</button>`;
+}
 
 function renderGrids() {
-  document.getElementById("gridDamane").innerHTML = PROJECTS.filter(p => p.org.startsWith("Damane Cash")).map(card).join("");
-  document.getElementById("gridEssanet").innerHTML = ESSANET.map(id => card(byId[id])).join("");
-  document.getElementById("gridMarsa").innerHTML = card(byId["marsa-insight"]);
-  document.getElementById("gridWeb").innerHTML = card(byId["devis-ai"]);
-  document.getElementById("gridUni").innerHTML = PROJECTS.filter(p => p.context === "Académique").map(card).join("");
-  document.getElementById("gridPerso").innerHTML = PERSO.map(id => card(byId[id])).join("");
+  paint("gridDamane", PROJECTS.filter(p => p.org.startsWith("Damane Cash")));
+  paint("gridEssanet", ESSANET.map(id => byId[id]));
+  paint("gridMarsa", [byId["marsa-insight"]]);
+  paint("gridWeb", [byId["devis-ai"]]);
+  paint("gridUni", PROJECTS.filter(p => p.context === "Académique"));
+  paint("gridPerso", PERSO.map(id => byId[id]));
   shown(document.getElementById("professionnel"));
   shown(document.getElementById("universitaire"));
   shown(document.getElementById("personnel"));
@@ -206,6 +232,18 @@ document.addEventListener("click", e => {
   }
   if (e.target.closest("#lightbox")) { document.getElementById("lightbox").classList.remove("open"); return; }
   if (e.target.closest("[data-close]")) { closeModal(); return; }
+  const more = e.target.closest("[data-more]");
+  if (more) {
+    visible[more.dataset.more] = (visible[more.dataset.more] || STEP) + STEP;
+    renderGrids();
+    return;
+  }
+  const all = e.target.closest("[data-all]");
+  if (all) {
+    visible[all.dataset.all] = Infinity;
+    renderGrids();
+    return;
+  }
   const opener = e.target.closest("[data-open]");
   if (opener) openProject(opener.dataset.open);
 });
