@@ -630,8 +630,4 @@ window.GSMAG_CURRICULUM = {
   ],
 };
 
-window.GSMAG_USERS = [
-  { id: "u1", email: "client@essanet.net", password: "demo123", firstName: "Client", lastName: "Démo", name: "Client Démo", role: "client" },
-  { id: "u2", email: "formateur@essanet.net", password: "demo123", firstName: "Formateur", lastName: "ESSANET", name: "Formateur ESSANET", role: "formateur" },
-  { id: "u3", email: "admin@essanet.net", password: "demo123", firstName: "Admin", lastName: "ESSANET", name: "Admin ESSANET", role: "admin" },
-];
+window.GSMAG_USERS = [];
