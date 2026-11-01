@@ -267,7 +267,7 @@ document.addEventListener("keydown", e => {
 
 /* Nav */
 const nav = document.getElementById("nav");
-const spy = [...document.querySelectorAll("#parcours, #professionnel, #universitaire, #personnel, #competences, #contact")];
+const spy = [...document.querySelectorAll("#parcours, #professionnel, #universitaire, #personnel, #competences, #formation, #contact")];
 const navLinksAll = [...document.querySelectorAll(".site-nav a")];
 const onScroll = () => {
   nav.classList.toggle("scrolled", window.scrollY > 40);
