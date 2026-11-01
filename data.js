@@ -34,7 +34,7 @@ const PROJECTS = [
     id: "erp-launchpad",
     title: "Portail ERP Launchpad",
     tagline: "Un point d'entrée unique pour toutes les applications internes.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["app", "dev"], featured: true, accent: "#8c4a32",
     problem: "Au fil du stage, les applications internes se sont multipliées : extraction, RIB, SIMT/MAD, commissions, factures. Chacune avait son adresse, ce qui compliquait l'accès pour les équipes. Il fallait un endroit unique pour tout regrouper.",
     actions: [
@@ -51,7 +51,7 @@ const PROJECTS = [
     id: "gestion-rib",
     title: "Application de gestion des RIB",
     tagline: "Circuit de validation Back-Office vers Conformité, entièrement tracé.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["app"], featured: true, accent: "#8c4a32",
     problem: "Les RIB des partenaires étaient saisis et vérifiés manuellement, sans historique des modifications ni contrôle systématique.",
     actions: [
@@ -69,7 +69,7 @@ const PROJECTS = [
     id: "simt-mad",
     title: "Générateur de fichiers SIMT / MAD",
     tagline: "Du fichier Excel au fichier bancaire normé, sans ressaisie.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["app", "data"], accent: "#8c4a32",
     problem: "Les fichiers de virements au format bancaire étaient préparés à la main, avec un risque d'erreur à chaque étape.",
     actions: [
@@ -86,7 +86,7 @@ const PROJECTS = [
     id: "cms-crc",
     title: "CMS CRC · relevés de commissions",
     tagline: "Refonte d'une application monolithique en architecture modulaire.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["app", "data"], accent: "#8c4a32",
     problem: "Une application de consultation de 5 500 lignes, dont près de 4 400 n'étaient plus utilisées, devenait difficile à maintenir.",
     actions: [
@@ -102,7 +102,7 @@ const PROJECTS = [
     id: "factures-pdf",
     title: "Portail des factures PDF",
     tagline: "Recherche, aperçu et téléchargement des factures, avec journal d'audit.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["app"], accent: "#8c4a32",
     problem: "Les factures étaient dispersées dans plusieurs dossiers réseau, sans trace des consultations.",
     actions: [
@@ -118,7 +118,7 @@ const PROJECTS = [
     id: "extraction",
     title: "Plateforme d'extraction de données",
     tagline: "Extraction par activité : Fundex, Damane Pay, Adria, Change, MTO.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["data", "app"], accent: "#8c4a32",
     problem: "Chaque demande d'extraction passait par une requête écrite à la main.",
     actions: [
@@ -133,7 +133,7 @@ const PROJECTS = [
     id: "etl-pentaho",
     title: "Flux ETL Pentaho",
     tagline: "Intégration de fichiers hétérogènes vers des tables exploitables.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["data"], accent: "#8c4a32",
     problem: "Les fichiers de retour bancaires et les transactions arrivaient dans des formats différents (Excel, CSV, bases).",
     actions: [
@@ -149,7 +149,7 @@ const PROJECTS = [
     id: "rpa",
     title: "Automatisation des rapports (RPA)",
     tagline: "Des robots qui récupèrent chaque jour les rapports des plateformes partenaires.",
-    context: "Stage", org: "Damane Cash · Bank of Africa", date: "2026",
+    context: "Stage", org: "BMCE Damane Cash", date: "2026",
     cats: ["data", "dev"], accent: "#8c4a32",
     problem: "Les rapports quotidiens des plateformes partenaires étaient téléchargés à la main, chaque jour.",
     actions: [
@@ -580,7 +580,7 @@ const PROJECTS = [
 
 const EXPERIENCES = [
   {
-    org: "Damane Cash", sub: "Filiale de Bank of Africa · Groupe BMCE",
+    org: "BMCE Damane Cash", sub: "Filiale de Bank of Africa",
     role: "Stagiaire en ingénierie des données et applications métier",
     date: "Mars – Juillet 2026", length: "5 mois", place: "Casablanca",
     points: [

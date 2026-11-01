@@ -78,7 +78,7 @@ function renderTimeline() {
       <div class="tl-role">${esc(e.role)}</div>
       <ul>${e.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
       ${tags(e.tags, 12)}
-      <div class="tl-projects">${raw.org === "Damane Cash"
+      <div class="tl-projects">${raw.org === "BMCE Damane Cash"
         ? `<a class="chip-link" href="#damane">${esc(t("tl.damane"))}</a>`
         : `<span>${esc(t("tl.projects"))}</span>${e.projects.map(id => `<button class="chip-link" data-open="${id}">${esc(viewProject(byId[id]).title)}</button>`).join("")}`}
       </div>
@@ -135,7 +135,7 @@ function paint(id, items) {
 }
 
 function renderGrids() {
-  paint("gridDamane", PROJECTS.filter(p => p.org.startsWith("Damane Cash")));
+  paint("gridDamane", PROJECTS.filter(p => p.org.startsWith("BMCE Damane Cash")));
   paint("gridEssanet", ESSANET.map(id => byId[id]));
   paint("gridMarsa", [byId["marsa-insight"]]);
   paint("gridWeb", [byId["devis-ai"]]);
